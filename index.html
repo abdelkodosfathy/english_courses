@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Courses Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      .shape {
+        scale: 5;
+        position: absolute;
+        z-index: 0;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-gray-900">
+    <!-- Navbar -->
+    <header class="backdrop-blur-md bg-white/30 shadow fixed w-full z-30">
+      <div
+        class="*:text-white container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="text-xl font-bold text-gray-800">
+          <a href="#">English Mastery</a>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex space-x-6 *:text-white">
+          <a href="#home" class="text-gray-600 hover:text-amber-600">Home</a>
+          <a href="#featured" class="text-gray-600 hover:text-amber-600"
+            >Featured</a
+          >
+          <a href="#why-us" class="text-gray-600 hover:text-amber-600"
+            >Why Us</a
+          >
+          <a href="#contact" class="text-gray-600 hover:text-amber-600"
+            >Contact</a
+          >
+        </nav>
+
+        <!-- Right Actions -->
+        <div class="flex items-center space-x-4">
+          <!-- Search Icon -->
+          <button class="text-white hover:text-amber-600">
+            <i class="fa fa-search"></i>
+          </button>
+
+          <!-- Logout Button -->
+          <button
+            onclick="login()"
+            class="bg-white hover:bg-amber-500 text-[#FF006E] hover:text-white font-semibold px-4 py-2 rounded-full transition"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-amber-50 py-20 max-h-screen bg-gradient-to-bl from-[#FF006E] to-[#FF880B] w-full"
+    >
+      <div
+        class="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-10"
+      >
+        <!-- Left Side -->
+        <div class="w-full md:w-1/2 text-center md:text-left">
+          <h1
+            class="text-white text-4xl md:text-7xl font-bold text-gray-800 mb-4"
+          >
+            Learning Business for the Future
+          </h1>
+          <p class="text-white text-gray-600 mb-6 text-2xl">
+            Nisl quisque nunc at cras tristique. Lectus scelerisque sed id nisi
+            vitae venenatis.
+          </p>
+          <a
+            href="#register"
+            class="inline-block bg-white text-[#FF006E] font-semibold px-6 py-3 rounded-full transition"
+          >
+            Register Now
+          </a>
+        </div>
+
+        <!-- Right Side with Two Overlapping Images -->
+        <div class="w-full md:w-1/2 relative">
+          <!-- Large Image -->
+          <img
+            src="/assets/img/Rectangle 3.png"
+            alt="Main Image"
+            class="rounded-lg w-full"
+          />
+
+          <!-- Small Image (overlapping) -->
+          <!-- <img
+            src="/assets/img/Rectangle 4.png"
+            alt="Overlay Image"
+            class="absolute top-24 left-0 transform -translate-x-4 -translate-y-4 rounded-lg"
+          /> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-16">
+      <div class="container mx-auto px-4">
+        <h3 class="text-5xl font-bold mb-8 text-center">
+          advantages of learn business
+        </h3>
+        <p class="mb-8 text-center">
+          Elit ut arcu fringilla felis malesuada imperdiet. Id quis scelerisque
+          quis neque eu enim. Morbi nisi tellus nec elit. Nunc lorem sit rhoncus
+          sit nibh nulla.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-[2px] rounded-xl">
+            <div class="bg-white p-6 h-80 rounded-xl flex flex-col justify-center">
+              <h4 class="text-xl font-semibold mb-2">Beginner English</h4>
+              <p class="text-gray-600 mb-4">
+                Start from scratch and build your basics.
+              </p>
+              <a href="#" class="text-amber-600 hover:underline">Learn More</a>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-tr shadow-2xl from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl"
+          >
+            <div class="bg-white p-6 h-80 rounded-xl flex flex-col justify-center">
+              <h4 class="text-xl font-semibold mb-2">Business English</h4>
+              <p class="text-gray-600 mb-4">
+                Improve your communication in the workplace.
+              </p>
+              <a href="#" class="text-amber-600 hover:underline">Learn More</a>
+            </div>
+          </div>
+          <div class="p-[2px] rounded-xl">
+            <div class="bg-white p-6 h-80 rounded-xl flex flex-col justify-center">
+              <h4 class="text-xl font-semibold mb-2">IELTS Prep</h4>
+              <p class="text-gray-600 mb-4">
+                Ace the test with our expert guidance.
+              </p>
+              <a href="#" class="text-amber-600 hover:underline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- Section 1: Hero With Text Left / Images Right -->
+<section class="py-20 bg-white my-36">
+  <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-stritch  gap-12">
+    <!-- Left: Text -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left">
+      <h1 class="text-4xl font-bold mb-4 text-gray-800">
+        Help learn business more quickly and efficiently
+      </h1>
+      <p class="text-gray-600 mb-6">
+        Morbi ac sit vel nisl. Scelerisque viverra tempus tortor facilisis magna. Ultricies suspendisse a libero lorem sodales eget. Egestas in erat porttitor a cursus.
+      </p>
+      <button class="bg-[#FF006E] text-white px-6 py-3 rounded-md font-medium hover:bg-[#e60063] transition">
+        See more &rarr;
+      </button>
+    </div>
+    <!-- Right: Images -->
+    <div class="w-full lg:w-1/2 relative">
+      <!-- الصورة العليا (تغطي جزء من السفلى) -->
+
+      <div class="absolute -top-36 left-40 w-72 h-[36rem] rounded-xl z-10 bg-gradient-to-bl from-[#FF006E] to-[#FF880B]">
+      </div>
+      <div class="absolute -top-36 -left-20 w-100 h-100 z-20">
+        <img src="/assets/img/Rectangle 10.png"
+            alt="Top Image"
+            class="w-full h-full object-cover rounded-lg" />
+      </div>
+
+      <!-- الصورة السفلى -->
+      <div class="absolute top-20 left-36 w-100 h-100 z-10">
+        <img src="/assets/img/Rectangle 11.png"
+            alt="Bottom Image"
+            class="w-full h-full object-cover rounded-lg" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section 2: Image Left / Text Right -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+    <!-- Left: Image with Gradient -->
+    <div class="w-full lg:w-1/2 relative">
+      <div class="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-[#FF006E] to-[#FFBE0B] rounded-xl -z-10"></div>
+      <img src="/assets/img/Group 71.png" alt="Image" class="rounded-lg relative z-10">
+    </div>
+    <!-- Right: Text -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left">
+      <h1 class="text-4xl font-bold mb-4 text-gray-800">
+        Growing business market is getting better
+      </h1>
+      <p class="text-gray-600 mb-6">
+        Morbi ac sit vel nisl. Scelerisque viverra tempus tortor facilisis magna. Ultricies suspendisse a libero lorem sodales eget. Egestas in erat porttitor a cursus.
+      </p>
+      <button class="bg-[#FF006E] text-white px-6 py-3 rounded-md font-medium hover:bg-[#e60063] transition">
+        See more &rarr;
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Popular Courses -->
+<section class="py-20 bg-white text-center">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Popular Courses</h2>
+    <p class="text-gray-600 max-w-2xl mx-auto mb-10">
+      Morbi ac sit vel nisl. Scelerisque viverra tempus tortor facilisis magna. Ultricies suspendisse a libero lorem sodales eget. Egestas in erat porttitor a cursus.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Course Card -->
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gradient-to-tr from-[#FF006E] to-[#FFBE0B] p-[2px] rounded-xl shadow-[0_12px_20px_rgba(0,0,0,0.2)]">
+        <div class="bg-white p-6 rounded-xl h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x200" alt="Course" class="rounded-lg mb-4">
+          <h4 class="text-xl font-semibold mb-2 text-gray-800">Manufacture</h4>
+          <p class="text-gray-600 mb-4 flex-grow">
+            Magnis accumsan vel morbi urna pellentesque lacus aliquam. Dignissim orci ipsum lorem quis sit.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <p><span class="font-semibold text-gray-800">1,000+</span> join members</p>
+            <button class="bg-amber-400 text-white px-3 py-1 rounded-full text-xs">15x lessons</button>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat other cards as needed -->
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Testimonials -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4 flex flex-col lg:flex-row gap-12 items-start">
+    <!-- Left Text -->
+    <div class="w-full lg:w-1/2">
+      <h1 class="text-4xl font-bold mb-4 text-gray-800">
+        Growing business market is getting better
+      </h1>
+      <p class="text-gray-600 mb-6">
+        Morbi ac sit vel nisl. Scelerisque viverra tempus tortor facilisis magna. Ultricies suspendisse a libero lorem sodales eget. Egestas in erat porttitor a cursus.
+      </p>
+      <button class="bg-[#FF006E] text-white px-6 py-3 rounded-md font-medium hover:bg-[#e60063] transition">
+        See more &rarr;
+      </button>
+    </div>
+    <!-- Right Cards -->
+    <div class="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 relative">
+        <i class="fa-solid fa-quote-left text-2xl text-amber-500 absolute -top-4 -left-3"></i>
+        <p class="text-gray-700">
+          At in pellentesque integer netus enim purus. Tempor nulla porta pretium venenatis sem tellus duis. Rhoncus eu lectus interdum tellus pellentesque.
+        </p>
+      </div>
+      <!-- Repeat other testimonial cards -->
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 text-gray-700 pt-12 pb-6 mt-20">
+      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Logo / Brand -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">English Mastery</h2>
+          <p class="text-sm text-gray-600">
+            Learn English for a better future. Fluent, fast, and fun.
+          </p>
+        </div>
+
+        <!-- Column 1: Company -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Company</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-amber-600">About Us</a></li>
+            <li><a href="#" class="hover:text-amber-600">Careers</a></li>
+            <li><a href="#" class="hover:text-amber-600">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Courses -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Courses</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="hover:text-amber-600">Beginner English</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-amber-600">Business English</a>
+            </li>
+            <li><a href="#" class="hover:text-amber-600">IELTS Prep</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Support -->
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Support</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-amber-600">Contact</a></li>
+            <li><a href="#" class="hover:text-amber-600">FAQs</a></li>
+            <li><a href="#" class="hover:text-amber-600">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Line -->
+      <div class="border-t mt-10 pt-4 text-center text-sm text-gray-500">
+        &copy; 2025 English Mastery. All rights reserved.
+      </div>
+    </footer>
+  </body>
+
+  <script>
+    function login() {
+      window.location = 'login.html';
+    }
+  </script>
+  
+</html>
+
