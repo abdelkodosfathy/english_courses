@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="/english_courses/assets/css/toast.css">
+  <link rel="stylesheet" href="/english_courses/assets/css/schedule.css">
+  
 </head>
 <body class="bg-gray-100 text-gray-800">
   <!-- Toast Notification -->
@@ -21,13 +23,13 @@
 
   <!-- Header -->
   <div class="flex flex-col h-screen">
-    <header class="bg-white shadow px-6 py-4 flex justify-between items-center w-full top-0 z-10">
+    <!-- <header class="bg-white shadow px-6 py-4 flex justify-between items-center w-full top-0 z-10">
       <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
       <button class="text-sm bg-[#FF006E] text-white px-4 py-2 rounded-md hover:bg-[#e60063]">Logout</button>
-    </header>
+    </header> -->
 
     <!-- Wrapper under header -->
-    <div class="flex flex-1">
+    <div class="flex flex-1 max-h-screen">
       <!-- Sidebar -->
       <aside id="sidebar" class="px-2 bg-gradient-to-b from-[#FF006E] to-[#FFBE0B] text-white transition-all duration-300 w-48 overflow-hidden">
         <div class="flex flex-col items-start py-6 space-y-4 h-full">
@@ -77,13 +79,25 @@
             </div>
           </div>
           
+          <div class="w-full">
+            <button onclick="toggleSubMenu('schedule-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+              <i class="fa fa-calendar text-lg w-6 text-center"></i>
+              <span class="tab-label ml-2">Schedule</span>
+            </button>
+            <div id="schedule-sub" class="sub-menu hidden pl-6 space-y-1">
+              <button onclick="showTab('schedule-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Schedule</button>
+              <button onclick="showTab('schedule-table')" class="text-sm block w-full text-left hover:text-yellow-100">Schedule Table</button>
+              <button onclick="showTab('schedule-view')" class="text-sm block w-full text-left hover:text-yellow-100">Schedule view</button>
+            </div>
+          </div>
+          
 
         </div>
       </aside>
 
       <!-- Main Content -->
-      <div class="flex-1 flex flex-col overflow-y-auto">
-        <main class="p-6">
+      <div class="flex-1 flex flex-col ">
+        <main class="p-6 flex-1 max-h-full">
           <!-- Student Form -->
           <div id="students-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
             <h2 class="text-2xl font-bold mb-6">Add Student</h2>
@@ -184,7 +198,6 @@
             <button onclick="addAttendance()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Save</button>
           </div>
           
-
           <div id="attendance-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
             <h2 class="text-2xl font-bold mb-6">Attendance Table</h2>
             <table class="min-w-full text-left">
@@ -194,6 +207,67 @@
               <tbody id="attendance-table-body"></tbody>
             </table>
           </div>
+
+          <!-- Schendule Form -->
+          <div id="schedule-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Add Schedule</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <select id="schedule-course" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Course</option>
+              </select>
+              <select id="schedule-teacher" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Teacher</option>
+              </select>
+              <select id="schedule-day" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Day</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+              </select>
+              <input type="text" id="schedule-time" placeholder="Time (e.g. 4:00 PM - 6:00 PM)" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 col-span-2">
+            </div>
+            <button onclick="addSchedule()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Schedule</button>
+          </div>
+          
+          <div id="schedule-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Schedule Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr>
+                  <th class="p-3">ID</th>
+                  <th class="p-3">Course</th>
+                  <th class="p-3">Teacher</th>
+                  <th class="p-3">Day</th>
+                  <th class="p-3">Time</th>
+                </tr>
+              </thead>
+              <tbody id="schedule-table-body"></tbody>
+            </table>
+          </div>
+          
+          <!-- Schedule View -->
+          <div id="schedule-view" class="tab-content hidden flex flex-col bg-white p-6 rounded-xl shadow h-full">
+            <h2 class="text-2xl font-bold mb-6">Schedule of the Day</h2>
+
+
+            <div class="flex gap-4 p-2 overflow-y-auto relative flex-1">
+              <!-- Vertical timeline -->
+              <div class="w-20 flex flex-col items-center  sticky top-0">
+                <!-- سيتم ملء الساعات بالجافاسكريبت -->
+                <div id="timeline-hours" class="flex flex-col items-center gap-1"></div>
+              </div>
+
+              <!-- Schedule content -->
+              <div class="flex-1 grid gap-4" id="schedule-cards">
+                <!-- سيتم ملء البطاقات بالجافاسكريبت -->
+              </div>
+            </div>
+          </div>
+
           
         </main>
       </div>

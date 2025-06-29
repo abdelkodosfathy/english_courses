@@ -1,5 +1,5 @@
-let studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1;
-const students = [], teachers = [];
+let studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
+const students = [], teachers = [], scheduleList = [];
 
 
 function showTab(tabId) {
@@ -7,7 +7,13 @@ function showTab(tabId) {
     div.classList.add('hidden');
   });
   document.getElementById(tabId).classList.remove('hidden');
+
+
+  if (tabId === "schedule-view") {
+    renderScheduleView();
+  }
 }
+
 
 function toggleSubMenu(id) {
   document.getElementById(id).classList.toggle('hidden');
@@ -83,7 +89,6 @@ function addTeacher() {
   showToast("Teacher added");
   populateTeacherSelect(); // update attendance teacher
 }
-
 
 function addCourse() {
   const name = document.getElementById("course-name").value;
@@ -177,6 +182,30 @@ function addAttendance() {
   document.getElementById("student-autocomplete").value = "";
 }
 
+function addSchedule() {
+  const course = document.getElementById("schedule-course").value;
+  const teacher = document.getElementById("schedule-teacher").value;
+  const day = document.getElementById("schedule-day").value;
+  const time = document.getElementById("schedule-time").value;
+
+  if (!course || !teacher || !day || !time) return alert("Please fill all fields");
+
+  const tbody = document.getElementById("schedule-table-body");
+  tbody.innerHTML += `
+    <tr>
+      <td class="p-2">${scheduleId++}</td>
+      <td class="p-2">${course}</td>
+      <td class="p-2">${teacher}</td>
+      <td class="p-2">${day}</td>
+      <td class="p-2">${time}</td>
+    </tr>
+  `;
+
+  showToast("Schedule added!");
+  document.getElementById("schedule-time").value = "";
+}
+
+
 function populateStudentAutocomplete() {
   const dataList = document.getElementById("student-list");
   dataList.innerHTML = "";
@@ -198,9 +227,109 @@ function populateTeacherSelect() {
   });
 }
 
+function populateScheduleDropdowns() {
+  const courseSelect = document.getElementById("schedule-course");
+  const teacherSelect = document.getElementById("schedule-teacher");
+
+  courseSelect.innerHTML = `<option disabled selected>Select Course</option>`;
+  teacherSelect.innerHTML = `<option disabled selected>Select Teacher</option>`;
+
+  courses.forEach(course => {
+    const option = document.createElement("option");
+    option.value = course.id;
+    option.textContent = `${course.id} - ${course.name}`;
+    courseSelect.appendChild(option);
+  });
+
+  teachers.forEach(teacher => {
+    const option = document.createElement("option");
+    option.value = teacher.id;
+    option.textContent = `${teacher.id} - ${teacher.name}`;
+    teacherSelect.appendChild(option);
+  });
+}
+
 window.onload = () => {
   showTab('students-table');
   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
   populateStudentAutocomplete();
   populateTeacherSelect();
 };
+
+
+
+
+const scheduleToday = [
+  { id: 1, time: "09:00 AM", duration: "1h", course: "Speaking A1", teacher: "T-01" },
+  { id: 2, time: "09:00 AM", duration: "1.5h", course: "Writing A2", teacher: "T-02" },
+  { id: 3, time: "10:00 AM", duration: "1h", course: "Grammar B1", teacher: "T-03" },
+  { id: 5, time: "12:00 PM", duration: "1h", course: "Reading C1", teacher: "T-01" },
+  { id: 6, time: "01:00 PM", duration: "1h", course: "Speaking A1", teacher: "T-02" },
+  { id: 7, time: "02:00 PM", duration: "1.5h", course: "Grammar A2", teacher: "T-03" },
+  { id: 8, time: "03:00 PM", duration: "1h", course: "Writing B2", teacher: "T-04" },
+  { id: 8, time: "03:00 PM", duration: "1h", course: "Speaking B2", teacher: "T-01" },
+  { id: 10, time: "05:00 PM", duration: "1.5h", course: "Speaking A2", teacher: "T-02" },
+];
+
+
+function renderScheduleView() {
+  const timeline = document.getElementById("timeline-hours");
+  const cards = document.getElementById("schedule-cards");
+  timeline.innerHTML = '';
+  cards.innerHTML = '';
+
+  const hourCount = {};
+  const hourToSessions = {};
+
+  // إعداد البيانات
+  scheduleToday.forEach(item => {
+    const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
+    hourCount[hour] = (hourCount[hour] || 0) + 1;
+    hourToSessions[hour] = [...(hourToSessions[hour] || []), item];
+  });
+
+  // Render bullets
+  Object.keys(hourCount).forEach(hour => {
+    timeline.innerHTML += `
+      <div class="flex flex-col items-center cursor-pointer" onclick="scrollToHour('${hour}')">
+        <div class="h-8 w-1 bg-gray-300"></div>
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
+          ${hourCount[hour]}
+        </div>
+        <div class="text-xs mt-1 text-gray-700">${hour}</div>
+      </div>
+    `;
+  });
+
+  // Render session cards
+  scheduleToday.forEach(item => {
+    const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
+    cards.innerHTML += `
+      <div id="hour-${hour.replace(/\s/g, '')}" class="bg-white border-l-4 border-amber-500 p-4 shadow rounded-lg mb-4">
+        <div class="text-sm text-gray-600">${item.time} - ${item.duration}</div>
+        <div class="font-bold text-lg text-gray-800">Course: ${item.course}</div>
+        <div class="text-sm text-gray-500">Teacher: ${item.teacher}</div>
+      </div>
+    `;
+  });
+}
+
+function scrollToHour(hour) {
+  // إزالة highlight من كل العناصر المحددة مسبقًا
+  const markedElements = document.getElementsByClassName('highlight');
+  Array.from(markedElements).forEach(el => {
+    el.classList.remove("highlight");
+  });
+
+  // إضافة highlight للعناصر الجديدة
+  const cleanHour = hour.replace(/\s/g, '');
+  const targetElements = document.querySelectorAll(`#hour-${cleanHour}`);
+  targetElements.forEach(el => {
+    el.classList.add("highlight");
+  });
+
+  // تمرير للعنصر الأول المطابق
+  const el = document.getElementById(`hour-${cleanHour}`);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
