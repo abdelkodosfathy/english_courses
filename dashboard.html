@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- dashboard.html -->
+  <script src="/english_courses/assets/js/dashboard.js"></script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/english_courses/assets/css/toast.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
   <!-- Toast Notification -->
-  <div id="toast" class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-md hidden z-50">
+  <div id="toast" class="fixed top-5 right-5 bg-white px-4 py-2 rounded shadow-md hidden z-50 overflow-hidden">
     Row added successfully!
+    <div id="toast-progress" class="absolute bottom-0 left-0 h-1 bg-green-500"></div>
   </div>
+  
 
   <!-- Header -->
   <div class="flex flex-col h-screen">
@@ -23,7 +29,7 @@
     <!-- Wrapper under header -->
     <div class="flex flex-1">
       <!-- Sidebar -->
-      <aside id="sidebar" class="bg-gradient-to-b from-[#FF006E] to-[#FFBE0B] text-white transition-all duration-300 w-48 overflow-hidden">
+      <aside id="sidebar" class="px-2 bg-gradient-to-b from-[#FF006E] to-[#FFBE0B] text-white transition-all duration-300 w-48 overflow-hidden">
         <div class="flex flex-col items-start py-6 space-y-4 h-full">
           <button onclick="toggleSidebar()" class="text-white font-bold px-4 w-full flex justify-center" id="toggleButton">☰</button>
 
@@ -32,7 +38,7 @@
               <i class="fa fa-user-graduate text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Students</span>
             </button>
-            <div id="students-sub" class="pl-6 space-y-1">
+            <div id="students-sub" class="sub-menu pl-6 space-y-1">
               <button onclick="showTab('students-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Student</button>
               <button onclick="showTab('students-table')" class="text-sm block w-full text-left hover:text-yellow-100">Student Table</button>
             </div>
@@ -43,7 +49,7 @@
               <i class="fa fa-chalkboard-teacher text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Teachers</span>
             </button>
-            <div id="teachers-sub" class="hidden pl-6 space-y-1">
+            <div id="teachers-sub" class="sub-menu hidden pl-6 space-y-1">
               <button onclick="showTab('teachers-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Teacher</button>
               <button onclick="showTab('teachers-table')" class="text-sm block w-full text-left hover:text-yellow-100">Teacher Table</button>
             </div>
@@ -54,11 +60,23 @@
               <i class="fa fa-book text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Courses</span>
             </button>
-            <div id="courses-sub" class="hidden pl-6 space-y-1">
+            <div id="courses-sub" class="sub-menu hidden pl-6 space-y-1">
               <button onclick="showTab('courses-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Course</button>
               <button onclick="showTab('courses-table')" class="text-sm block w-full text-left hover:text-yellow-100">Course Table</button>
             </div>
           </div>
+
+          <div class="w-full">
+            <button onclick="toggleSubMenu('attendance-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+              <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+              <span class="tab-label ml-2">Attendance</span>
+            </button>
+            <div id="attendance-sub" class="sub-menu hidden pl-6 space-y-1">
+              <button onclick="showTab('attendance-form')" class="text-sm block w-full text-left hover:text-yellow-100">Mark Attendance</button>
+              <button onclick="showTab('attendance-table')" class="text-sm block w-full text-left hover:text-yellow-100">Attendance Table</button>
+            </div>
+          </div>
+          
 
         </div>
       </aside>
@@ -86,7 +104,12 @@
           </div>
 
           <div id="students-table" class="tab-content bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Student Table</h2>
+            <div class="flex justify-between">
+              <h2 class="text-2xl font-bold mb-6">Student Table</h2>
+              <div class="mb-4">
+                <input type="text" id="student-search" oninput="filterStudents()" placeholder="Search by name, phone, or level..." class="p-2 border border-gray-300 rounded w-full">
+              </div>            
+            </div>
             <table class="min-w-full text-left">
               <thead class="bg-amber-100">
                 <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Level</th><th class="p-3">Phone</th><th class="p-3">Actions</th></tr>
@@ -135,31 +158,80 @@
             </table>
           </div>
 
+          <!-- Attendance Form -->
+          <div id="attendance-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Mark Attendance</h2>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Date & Time:</label>
+              <input type="datetime-local" id="attendance-date" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+            </div>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Teacher:</label>
+              <select id="attendance-teacher" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Teacher</option>
+              </select>
+            </div>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Present Student:</label>
+              <input type="text" id="student-autocomplete" placeholder="Type student name..." class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500" list="student-list">
+              <datalist id="student-list"></datalist>
+            </div>
+            
+          
+            <button onclick="addAttendance()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Save</button>
+          </div>
+          
+
+          <div id="attendance-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Attendance Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr><th class="p-3">ID</th><th class="p-3">Student</th><th class="p-3">Date</th><th class="p-3">Status</th></tr>
+              </thead>
+              <tbody id="attendance-table-body"></tbody>
+            </table>
+          </div>
+          
         </main>
       </div>
     </div>
   </div>
-
+<!-- 
   <script>
     let studentId = 1, teacherId = 1, courseId = 1;
 
     function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(div => div.classList.add('hidden'));
+      document.querySelectorAll('.tab-content').forEach(div => {
+        div.classList.add('hidden');
+      });
       document.getElementById(tabId).classList.remove('hidden');
     }
 
     function toggleSubMenu(id) {
       document.getElementById(id).classList.toggle('hidden');
+      const subMenus = document.querySelectorAll(".sub-menu");
+      subMenus.forEach(btn => {
+        if(btn.id === id){
+
+        } else {
+          btn.classList.add("hidden");
+        }
+      });
     }
 
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       const labels = document.querySelectorAll(".tab-label");
       const tabBtns = document.querySelectorAll(".tab-btn");
+      const subMenus = document.querySelectorAll(".sub-menu");
 
       const isCollapsed = sidebar.classList.contains("w-20");
 
       if (isCollapsed) {
+
         sidebar.classList.remove("w-20");
         sidebar.classList.add("w-48");
         labels.forEach(label => label.classList.remove("hidden"));
@@ -174,6 +246,10 @@
         tabBtns.forEach(btn => {
           btn.classList.remove("justify-start");
           btn.classList.add("justify-center");
+        });
+        subMenus.forEach(btn => {
+          btn.classList.add("hidden");
+
         });
       }
     }
@@ -226,6 +302,6 @@
         btn.classList.add("justify-start");
       });
     }
-  </script>
+  </script> -->
 </body>
 </html>
