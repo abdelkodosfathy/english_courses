@@ -8,6 +8,7 @@
   <script src="/english_courses/assets/js/dashboard.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/english_courses/assets/css/style.css">
   <link rel="stylesheet" href="/english_courses/assets/css/toast.css">
   <link rel="stylesheet" href="/english_courses/assets/css/schedule.css">
   
@@ -32,7 +33,7 @@
           <!-- <button onclick="toggleSidebar()" class="text-white font-bold px-4 w-full flex justify-center" id="toggleButton">☰</button> -->
           <!-- dashbaord -->
           <div class="w-full">
-            <button onclick="toggleSidebar();" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button  onclick="toggleSidebar();" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa-solid fa-bars text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Dashboard</span>
             </button>
@@ -40,7 +41,7 @@
 
           <!-- Students -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('students-sub');" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button id="students-btn" onclick="toggleSubMenu('students-sub');" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-user-graduate text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Students</span>
             </button>
@@ -52,7 +53,7 @@
 
           <!-- Teachers -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('teachers-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button id="teachers-btn" onclick="toggleSubMenu('teachers-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-chalkboard-teacher text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Teachers</span>
             </button>
@@ -64,7 +65,7 @@
 
           <!-- Courses -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('courses-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button id="courses-btn" onclick="toggleSubMenu('courses-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-book text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Courses</span>
             </button>
@@ -76,7 +77,7 @@
 
           <!-- Attendance -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('attendance-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button id="attendance-btn" onclick="toggleSubMenu('attendance-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Attendance</span>
             </button>
@@ -88,7 +89,7 @@
 
           <!-- Schedule -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('schedule-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button id="schedule-btn" onclick="toggleSubMenu('schedule-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-calendar text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Schedule</span>
             </button>

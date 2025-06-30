@@ -1,4 +1,4 @@
-let studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
+let sidebar = false, studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
 const students = [], teachers = [], scheduleList = [];
 
 
@@ -6,25 +6,13 @@ function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(div => {
     div.classList.add('hidden');
   });
-  document.getElementById(tabId).classList.remove('hidden');
+  document.getElementById(tabId)?.classList?.remove('hidden');
 
 
   if (tabId === "schedule-view") {
     renderScheduleView();
   }
 }
-
-
-function toggleSubMenu(id) {
-  document.getElementById(id).classList.toggle('hidden');
-  const subMenus = document.querySelectorAll(".sub-menu");
-  subMenus.forEach(btn => {
-    if (btn.id !== id) {
-      btn.classList.add("hidden");
-    }
-  });
-}
-
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const labels = document.querySelectorAll(".tab-label");
@@ -53,6 +41,39 @@ function toggleSidebar() {
       btn.classList.add("hidden");
     });
   }
+}
+
+function toggleSubMenu(id) {
+  // Toggle the selected submenu
+  document.getElementById(id).classList.toggle('hidden');
+
+  // Expand sidebar if collapsed
+  const sidebar = document.getElementById("sidebar");
+  const isCollapsed = sidebar.classList.contains("w-20");
+  if (isCollapsed) {
+    toggleSidebar();
+  }
+
+  // Collapse all other submenus
+  const subMenus = document.querySelectorAll(".sub-menu");
+  subMenus.forEach(menu => {
+    if (menu.id !== id) {
+      menu.classList.add("hidden");
+    }
+  });
+
+  // Highlight the corresponding tab-btn
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const targetPrefix = id.split("-")[0]; // e.g., "students" from "students-sub"
+
+  tabBtns.forEach(btn => {
+    const btnPrefix = btn.id?.split("-")[0]; // Safe in case id is missing
+    if (btnPrefix === targetPrefix) {
+      btn.classList.add("active"); // You can define "active" in CSS
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 }
 
 function addStudent() {
@@ -250,10 +271,10 @@ function populateScheduleDropdowns() {
 }
 
 window.onload = () => {
-  showTab('dashboard');
-  document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
-  populateStudentAutocomplete();
-  populateTeacherSelect();
+  // showTab('dashboard');
+  // document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
+  // populateStudentAutocomplete();
+  // populateTeacherSelect();
 };
 
 
