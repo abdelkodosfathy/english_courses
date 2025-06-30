@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- dashboard.html -->
   <script src="/english_courses/assets/js/dashboard.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,74 +22,82 @@
 
   <!-- Header -->
   <div class="flex flex-col h-screen">
-    <!-- <header class="bg-white shadow px-6 py-4 flex justify-between items-center w-full top-0 z-10">
-      <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-      <button class="text-sm bg-[#FF006E] text-white px-4 py-2 rounded-md hover:bg-[#e60063]">Logout</button>
-    </header> -->
 
     <!-- Wrapper under header -->
     <div class="flex flex-1 max-h-screen">
       <!-- Sidebar -->
       <aside id="sidebar" class="px-2 bg-gradient-to-b from-[#FF006E] to-[#FFBE0B] text-white transition-all duration-300 w-48 overflow-hidden">
         <div class="flex flex-col items-start py-6 space-y-4 h-full">
-          <button onclick="toggleSidebar()" class="text-white font-bold px-4 w-full flex justify-center" id="toggleButton">☰</button>
 
+          <!-- <button onclick="toggleSidebar()" class="text-white font-bold px-4 w-full flex justify-center" id="toggleButton">☰</button> -->
+          <!-- dashbaord -->
           <div class="w-full">
-            <button onclick="toggleSubMenu('students-sub'); showTab('students-table');" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+            <button onclick="toggleSidebar();" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
+              <i class="fa-solid fa-bars text-lg w-6 text-center"></i>
+              <span class="tab-label ml-2">Dashboard</span>
+            </button>
+          </div>
+
+          <!-- Students -->
+          <div class="w-full">
+            <button onclick="toggleSubMenu('students-sub');" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-user-graduate text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Students</span>
             </button>
             <div id="students-sub" class="sub-menu pl-6 space-y-1">
-              <button onclick="showTab('students-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Student</button>
-              <button onclick="showTab('students-table')" class="text-sm block w-full text-left hover:text-yellow-100">Student Table</button>
+              <a href="{{ route('students.create') }}" class="text-sm block w-full text-left hover:text-yellow-100">Add Student</a>
+              <a href="{{ route('students.index') }}" class="text-sm block w-full text-left hover:text-yellow-100">Student Table</a>
             </div>
           </div>
 
+          <!-- Teachers -->
           <div class="w-full">
             <button onclick="toggleSubMenu('teachers-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-chalkboard-teacher text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Teachers</span>
             </button>
             <div id="teachers-sub" class="sub-menu hidden pl-6 space-y-1">
-              <button onclick="showTab('teachers-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Teacher</button>
-              <button onclick="showTab('teachers-table')" class="text-sm block w-full text-left hover:text-yellow-100">Teacher Table</button>
+              <a href="{{ route('teachers.create') }}" class="text-sm block w-full text-left hover:text-yellow-100">Add Teacher</a>
+              <a href="{{ route('teachers.index') }}" class="text-sm block w-full text-left hover:text-yellow-100">Teacher Table</a>
             </div>
           </div>
 
+          <!-- Courses -->
           <div class="w-full">
             <button onclick="toggleSubMenu('courses-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-book text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Courses</span>
             </button>
             <div id="courses-sub" class="sub-menu hidden pl-6 space-y-1">
-              <button onclick="showTab('courses-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Course</button>
-              <button onclick="showTab('courses-table')" class="text-sm block w-full text-left hover:text-yellow-100">Course Table</button>
+              <a href="{{ route('courses.create') }}" class="text-sm block w-full text-left hover:text-yellow-100">Add Course</a>
+              <a href="{{ route('courses.index') }}" class="text-sm block w-full text-left hover:text-yellow-100">Course Table</a>
             </div>
           </div>
 
+          <!-- Attendance -->
           <div class="w-full">
             <button onclick="toggleSubMenu('attendance-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Attendance</span>
             </button>
             <div id="attendance-sub" class="sub-menu hidden pl-6 space-y-1">
-              <button onclick="showTab('attendance-form')" class="text-sm block w-full text-left hover:text-yellow-100">Mark Attendance</button>
-              <button onclick="showTab('attendance-table')" class="text-sm block w-full text-left hover:text-yellow-100">Attendance Table</button>
+              <a href="{{ route('attendance.create') }}" class="text-sm block w-full text-left hover:text-yellow-100">Mark Attendance</a>
+              <a href="{{ route('attendance.index') }}" class="text-sm block w-full text-left hover:text-yellow-100">Attendance Table</a>
             </div>
           </div>
-          
+
+          <!-- Schedule -->
           <div class="w-full">
             <button onclick="toggleSubMenu('schedule-sub')" class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-[#FF006E] rounded">
               <i class="fa fa-calendar text-lg w-6 text-center"></i>
               <span class="tab-label ml-2">Schedule</span>
             </button>
             <div id="schedule-sub" class="sub-menu hidden pl-6 space-y-1">
-              <button onclick="showTab('schedule-form')" class="text-sm block w-full text-left hover:text-yellow-100">Add Schedule</button>
-              <button onclick="showTab('schedule-table')" class="text-sm block w-full text-left hover:text-yellow-100">Schedule Table</button>
-              <button onclick="showTab('schedule-view')" class="text-sm block w-full text-left hover:text-yellow-100">Schedule view</button>
+              <a href="{{ route('schedule.create') }}" class="text-sm block w-full text-left hover:text-yellow-100">Add Schedule</a>
+              <a href="{{ route('schedule.index') }}" class="text-sm block w-full text-left hover:text-yellow-100">Schedule Table</a>
+              <a href="{{ route('schedule.view') }}" class="text-sm block w-full text-left hover:text-yellow-100">Schedule View</a>
             </div>
           </div>
-          
 
         </div>
       </aside>
@@ -98,284 +105,9 @@
       <!-- Main Content -->
       <div class="flex-1 flex flex-col ">
         <main class="p-6 flex-1 max-h-full">
-          <!-- Student Form -->
-          <div id="students-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Add Student</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <input type="text" id="student-name" placeholder="Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-              <select id="student-level" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-                <option value="" disabled selected>Select Level</option>
-                <option value="a1">a1</option>
-                <option value="a2">a2</option>
-                <option value="b1">b1</option>
-                <option value="b2">b2</option>
-                <option value="c1">c1</option>
-                <option value="c2">c2</option>
-              </select>
-              <input type="text" id="student-phone" placeholder="Phone" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-            </div>
-            <button onclick="addStudent()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Student</button>
-          </div>
-
-          <div id="students-table" class="tab-content bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between">
-              <h2 class="text-2xl font-bold mb-6">Student Table</h2>
-              <div class="mb-4">
-                <input type="text" id="student-search" oninput="filterStudents()" placeholder="Search by name, phone, or level..." class="p-2 border border-gray-300 rounded w-full">
-              </div>            
-            </div>
-            <table class="min-w-full text-left">
-              <thead class="bg-amber-100">
-                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Level</th><th class="p-3">Phone</th><th class="p-3">Actions</th></tr>
-              </thead>
-              <tbody id="students-table-body"></tbody>
-            </table>
-          </div>
-
-          <!-- Teacher Form -->
-          <div id="teachers-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Add Teacher</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" id="teacher-name" placeholder="Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-              <input type="text" id="teacher-phone" placeholder="Phone" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-            </div>
-            <button onclick="addTeacher()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Teacher</button>
-          </div>
-
-          <div id="teachers-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Teacher Table</h2>
-            <table class="min-w-full text-left">
-              <thead class="bg-amber-100">
-                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Phone</th><th class="p-3">Actions</th></tr>
-              </thead>
-              <tbody id="teachers-table-body"></tbody>
-            </table>
-          </div>
-
-          <!-- Course Form -->
-          <div id="courses-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Add Course</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" id="course-name" placeholder="Course Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-              <input type="text" id="course-duration" placeholder="Duration" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-            </div>
-            <button onclick="addCourse()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Course</button>
-          </div>
-
-          <div id="courses-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Course Table</h2>
-            <table class="min-w-full text-left">
-              <thead class="bg-amber-100">
-                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Duration</th><th class="p-3">Actions</th></tr>
-              </thead>
-              <tbody id="courses-table-body"></tbody>
-            </table>
-          </div>
-
-          <!-- Attendance Form -->
-          <div id="attendance-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Mark Attendance</h2>
-          
-            <div class="mb-4">
-              <label class="block font-semibold mb-1">Date & Time:</label>
-              <input type="datetime-local" id="attendance-date" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-            </div>
-          
-            <div class="mb-4">
-              <label class="block font-semibold mb-1">Teacher:</label>
-              <select id="attendance-teacher" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
-                <option disabled selected>Select Teacher</option>
-              </select>
-            </div>
-          
-            <div class="mb-4">
-              <label class="block font-semibold mb-1">Present Student:</label>
-              <input type="text" id="student-autocomplete" placeholder="Type student name..." class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500" list="student-list">
-              <datalist id="student-list"></datalist>
-            </div>
-            
-          
-            <button onclick="addAttendance()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Save</button>
-          </div>
-          
-          <div id="attendance-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Attendance Table</h2>
-            <table class="min-w-full text-left">
-              <thead class="bg-amber-100">
-                <tr><th class="p-3">ID</th><th class="p-3">Student</th><th class="p-3">Date</th><th class="p-3">Status</th></tr>
-              </thead>
-              <tbody id="attendance-table-body"></tbody>
-            </table>
-          </div>
-
-          <!-- Schendule Form -->
-          <div id="schedule-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Add Schedule</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <select id="schedule-course" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
-                <option disabled selected>Select Course</option>
-              </select>
-              <select id="schedule-teacher" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
-                <option disabled selected>Select Teacher</option>
-              </select>
-              <select id="schedule-day" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
-                <option disabled selected>Select Day</option>
-                <option>Saturday</option>
-                <option>Sunday</option>
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-              </select>
-              <input type="text" id="schedule-time" placeholder="Time (e.g. 4:00 PM - 6:00 PM)" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 col-span-2">
-            </div>
-            <button onclick="addSchedule()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Schedule</button>
-          </div>
-          
-          <div id="schedule-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
-            <h2 class="text-2xl font-bold mb-6">Schedule Table</h2>
-            <table class="min-w-full text-left">
-              <thead class="bg-amber-100">
-                <tr>
-                  <th class="p-3">ID</th>
-                  <th class="p-3">Course</th>
-                  <th class="p-3">Teacher</th>
-                  <th class="p-3">Day</th>
-                  <th class="p-3">Time</th>
-                </tr>
-              </thead>
-              <tbody id="schedule-table-body"></tbody>
-            </table>
-          </div>
-          
-          <!-- Schedule View -->
-          <div id="schedule-view" class="tab-content hidden flex flex-col bg-white p-6 rounded-xl shadow h-full">
-            <h2 class="text-2xl font-bold mb-6">Schedule of the Day</h2>
-
-
-            <div class="flex gap-4 p-2 overflow-y-auto relative flex-1">
-              <!-- Vertical timeline -->
-              <div class="w-20 flex flex-col items-center  sticky top-0">
-                <!-- سيتم ملء الساعات بالجافاسكريبت -->
-                <div id="timeline-hours" class="flex flex-col items-center gap-1"></div>
-              </div>
-
-              <!-- Schedule content -->
-              <div class="flex-1 grid gap-4" id="schedule-cards">
-                <!-- سيتم ملء البطاقات بالجافاسكريبت -->
-              </div>
-            </div>
-          </div>
-
-          
         </main>
       </div>
     </div>
   </div>
-<!-- 
-  <script>
-    let studentId = 1, teacherId = 1, courseId = 1;
-
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(div => {
-        div.classList.add('hidden');
-      });
-      document.getElementById(tabId).classList.remove('hidden');
-    }
-
-    function toggleSubMenu(id) {
-      document.getElementById(id).classList.toggle('hidden');
-      const subMenus = document.querySelectorAll(".sub-menu");
-      subMenus.forEach(btn => {
-        if(btn.id === id){
-
-        } else {
-          btn.classList.add("hidden");
-        }
-      });
-    }
-
-    function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      const labels = document.querySelectorAll(".tab-label");
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      const subMenus = document.querySelectorAll(".sub-menu");
-
-      const isCollapsed = sidebar.classList.contains("w-20");
-
-      if (isCollapsed) {
-
-        sidebar.classList.remove("w-20");
-        sidebar.classList.add("w-48");
-        labels.forEach(label => label.classList.remove("hidden"));
-        tabBtns.forEach(btn => {
-          btn.classList.remove("justify-center");
-          btn.classList.add("justify-start");
-        });
-      } else {
-        sidebar.classList.add("w-20");
-        sidebar.classList.remove("w-48");
-        labels.forEach(label => label.classList.add("hidden"));
-        tabBtns.forEach(btn => {
-          btn.classList.remove("justify-start");
-          btn.classList.add("justify-center");
-        });
-        subMenus.forEach(btn => {
-          btn.classList.add("hidden");
-
-        });
-      }
-    }
-
-    function addStudent() {
-      const name = document.getElementById("student-name").value;
-      const level = document.getElementById("student-level").value;
-      const phone = document.getElementById("student-phone").value;
-      const tbody = document.getElementById("students-table-body");
-      tbody.innerHTML += `<tr><td class="p-2">${studentId++}</td><td class="p-2">${name}</td><td class="p-2">${level}</td><td class="p-2">${phone}</td><td class="p-2"><button class='text-blue-600 hover:underline' onclick='editRow(this)'>Edit</button></td></tr>`;
-      showToast();
-    }
-
-    function addTeacher() {
-      const name = document.getElementById("teacher-name").value;
-      const phone = document.getElementById("teacher-phone").value;
-      const tbody = document.getElementById("teachers-table-body");
-      tbody.innerHTML += `<tr><td class="p-2">${teacherId++}</td><td class="p-2">${name}</td><td class="p-2">${phone}</td><td class="p-2"><button class='text-blue-600 hover:underline' onclick='editRow(this)'>Edit</button></td></tr>`;
-      showToast();
-    }
-
-    function addCourse() {
-      const name = document.getElementById("course-name").value;
-      const duration = document.getElementById("course-duration").value;
-      const tbody = document.getElementById("courses-table-body");
-      tbody.innerHTML += `<tr><td class="p-2">${courseId++}</td><td class="p-2">${name}</td><td class="p-2">${duration}</td><td class="p-2"><button class='text-blue-600 hover:underline' onclick='editRow(this)'>Edit</button></td></tr>`;
-      showToast();
-    }
-
-    function showToast() {
-      const toast = document.getElementById("toast");
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 3000);
-    }
-
-    function editRow(button) {
-      alert('Edit functionality is not implemented yet.');
-    }
-
-    window.onload = () => {
-      showTab('students-table');
-      const sidebar = document.getElementById("sidebar");
-      const labels = document.querySelectorAll(".tab-label");
-      const tabBtns = document.querySelectorAll(".tab-btn");
-      sidebar.classList.remove("w-20");
-      sidebar.classList.add("w-48");
-      labels.forEach(label => label.classList.remove("hidden"));
-      tabBtns.forEach(btn => {
-        btn.classList.remove("justify-center");
-        btn.classList.add("justify-start");
-      });
-    }
-  </script> -->
 </body>
 </html>

@@ -250,7 +250,7 @@ function populateScheduleDropdowns() {
 }
 
 window.onload = () => {
-  showTab('students-table');
+  showTab('dashboard');
   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
   populateStudentAutocomplete();
   populateTeacherSelect();
