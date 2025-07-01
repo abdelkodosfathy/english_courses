@@ -1,3 +1,20 @@
+/* For Arabic */
+html[lang="ar"] body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Cairo", sans-serif; /* Example Arabic font */
+}
+
+/* For English */
+html[lang="en"] body {
+  direction: ltr;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+}
+
+html[lang="en"] #sidebar-toggle-button{
+  transform: rotateY(180deg);
+}
 .active{
     background-color: white;
     color: #FF006E;
@@ -6,3 +23,7 @@
   background-color: white;
   color: #FF006E;
 } */
+
+#sidebar{
+  /* direction: rtl; */
+}

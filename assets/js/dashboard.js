@@ -290,68 +290,106 @@ function populateScheduleDropdowns() {
 }
 
 window.onload = () => {
-  // showTab('dashboard');
-  // document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
-  // populateStudentAutocomplete();
-  // populateTeacherSelect();
+  showTab('schedule-view');
+  document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
+  populateStudentAutocomplete();
+  populateTeacherSelect();
 };
 
 
 
 
 const scheduleToday = [
-  { id: 1, time: "09:00 AM", duration: "1h", course: "Speaking A1", teacher: "T-01" },
-  { id: 2, time: "09:00 AM", duration: "1.5h", course: "Writing A2", teacher: "T-02" },
-  { id: 3, time: "10:00 AM", duration: "1h", course: "Grammar B1", teacher: "T-03" },
-  { id: 5, time: "12:00 PM", duration: "1h", course: "Reading C1", teacher: "T-01" },
-  { id: 6, time: "01:00 PM", duration: "1h", course: "Speaking A1", teacher: "T-02" },
-  { id: 7, time: "02:00 PM", duration: "1.5h", course: "Grammar A2", teacher: "T-03" },
-  { id: 8, time: "03:00 PM", duration: "1h", course: "Writing B2", teacher: "T-04" },
-  { id: 8, time: "03:00 PM", duration: "1h", course: "Speaking B2", teacher: "T-01" },
-  { id: 10, time: "05:00 PM", duration: "1.5h", course: "Speaking A2", teacher: "T-02" },
+  {
+    time: "9:00 AM",
+    duration: "1h",
+    teacher: "أ. أحمد محمد",
+    room: 5,
+    language: "عربية",
+    level: "المستوى الأول"
+  },
+  {
+    time: "10:30 AM",
+    duration: "1h",
+    teacher: "أ. سلمى علي",
+    room: 3,
+    language: "عربية",
+    level: "المستوى الثاني"
+  },
+  {
+    time: "12:00 PM",
+    duration: "45 دقيقة",
+    teacher: "أ. مازن يوسف",
+    room: 2,
+    language: "إنجليزية",
+    level: "المستوى الثالث"
+  },
+  {
+    time: "1:15 PM",
+    duration: "1h",
+    teacher: "أ. نسرين عبد الله",
+    room: 4,
+    language: "فرنسية",
+    level: "المستوى الأول"
+  },
+  {
+    time: "3:00 PM",
+    duration: "1h",
+    teacher: "أ. خالد حسن",
+    room: 1,
+    language: "عربية",
+    level: "المستوى الرابع"
+  }
 ];
 
 
 function renderScheduleView() {
-  const timeline = document.getElementById("timeline-hours");
-  const cards = document.getElementById("schedule-cards");
-  timeline.innerHTML = '';
-  cards.innerHTML = '';
+  // const timeline = document.getElementById("timeline-hours");
+  // const cards = document.getElementById("schedule-cards");
+  // timeline.innerHTML = '';
+  // cards.innerHTML = '';
 
-  const hourCount = {};
-  const hourToSessions = {};
+  // const hourCount = {};
+  // const hourToSessions = {};
 
-  // إعداد البيانات
-  scheduleToday.forEach(item => {
-    const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
-    hourCount[hour] = (hourCount[hour] || 0) + 1;
-    hourToSessions[hour] = [...(hourToSessions[hour] || []), item];
-  });
+  // // إعداد البيانات
+  // scheduleToday.forEach(item => {
+  //   const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
+  //   hourCount[hour] = (hourCount[hour] || 0) + 1;
+  //   hourToSessions[hour] = [...(hourToSessions[hour] || []), item];
+  // });
 
-  // Render bullets
-  Object.keys(hourCount).forEach(hour => {
-    timeline.innerHTML += `
-      <div class="flex flex-col items-center cursor-pointer" onclick="scrollToHour('${hour}')">
-        <div class="h-8 w-1 bg-gray-300"></div>
-        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
-          ${hourCount[hour]}
-        </div>
-        <div class="text-xs mt-1 text-gray-700">${hour}</div>
-      </div>
-    `;
-  });
+  // // Render bullets
+  // Object.keys(hourCount).forEach(hour => {
+  //   timeline.innerHTML += `
+  //     <div class="flex flex-col items-center cursor-pointer" onclick="scrollToHour('${hour}')">
+  //       <div class="h-8 w-1 bg-gray-300"></div>
+  //       <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
+  //         ${hourCount[hour]}
+  //       </div>
+  //       <div class="text-xs mt-1 text-gray-700">${hour}</div>
+  //     </div>
+  //   `;
+  // });
 
-  // Render session cards
-  scheduleToday.forEach(item => {
-    const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
-    cards.innerHTML += `
-      <div id="hour-${hour.replace(/\s/g, '')}" class="bg-white border-l-4 border-amber-500 p-4 shadow rounded-lg mb-4">
-        <div class="text-sm text-gray-600">${item.time} - ${item.duration}</div>
-        <div class="font-bold text-lg text-gray-800">Course: ${item.course}</div>
-        <div class="text-sm text-gray-500">Teacher: ${item.teacher}</div>
-      </div>
-    `;
-  });
+  // // Render session cards
+  // scheduleToday.forEach(item => {
+  //   const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
+  //   cards.innerHTML += `
+  //     <div class="bg-white border-l-4 border-amber-500 p-4 shadow rounded-lg mb-4 flex items-start justify-between gap-4 flex-wrap">
+  //       <div>
+
+  //         <div class="text-sm text-gray-600 mb-1">${item.time}</div>
+  //         <div class=" text-gray-600 text-lg mb-1">${item.language} - ${item.level}</div>
+  //         <div class=" text-gray-800 text-lg mb-1">اسم المعلم: ${item.teacher}</div>
+  //         <div class=" text-gray-800">قاعة: ${item.room}</div>
+  //       </div>
+  //       <button class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded mt-2 sm:mt-0">
+  //         تسجيل الحضور
+  //       </button>
+  //     </div>
+  //   `;
+  // });
 }
 
 function scrollToHour(hour) {
