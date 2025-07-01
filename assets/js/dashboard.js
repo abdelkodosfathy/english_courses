@@ -1,6 +1,6 @@
-let sidebar = false, studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
+let sidebarCollapsed = false;  // false = expanded (w-48), true = collapsed (w-20)
+let studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
 const students = [], teachers = [], scheduleList = [];
-
 
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(div => {
@@ -8,20 +8,29 @@ function showTab(tabId) {
   });
   document.getElementById(tabId)?.classList?.remove('hidden');
 
-
   if (tabId === "schedule-view") {
     renderScheduleView();
   }
 }
+
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
   const labels = document.querySelectorAll(".tab-label");
   const tabBtns = document.querySelectorAll(".tab-btn");
   const subMenus = document.querySelectorAll(".sub-menu");
 
-  const isCollapsed = sidebar.classList.contains("w-20");
+  const toggleIcon = document.getElementById("sidebar-toggle-icon");
+  const parentButton = toggleIcon.parentElement.parentElement;  // gets the <button> element that wraps the icon
+  
 
-  if (isCollapsed) {
+  if (sidebarCollapsed) {
+    toggleIcon.style.transform = "rotate(0deg)";
+
+    parentButton.classList.remove('justify-center')
+    parentButton.classList.add('justify-end')
+    console.log(parentButton);
+
+    // Expand sidebar
     sidebar.classList.remove("w-20");
     sidebar.classList.add("w-48");
     labels.forEach(label => label.classList.remove("hidden"));
@@ -29,7 +38,14 @@ function toggleSidebar() {
       btn.classList.remove("justify-center");
       btn.classList.add("justify-start");
     });
+    sidebarCollapsed = false;
   } else {
+    toggleIcon.style.transform = "rotate(180deg)";
+    console.log(parentButton);
+    parentButton.classList.remove('justify-end')
+    parentButton.classList.add('justify-center')
+    
+    // Collapse sidebar
     sidebar.classList.add("w-20");
     sidebar.classList.remove("w-48");
     labels.forEach(label => label.classList.add("hidden"));
@@ -37,39 +53,42 @@ function toggleSidebar() {
       btn.classList.remove("justify-start");
       btn.classList.add("justify-center");
     });
-    subMenus.forEach(btn => {
-      btn.classList.add("hidden");
+    subMenus.forEach(menu => {
+      menu.classList.add("max-h-0");
+      menu.classList.remove("max-h-40");
     });
+    sidebarCollapsed = true;
   }
 }
 
 function toggleSubMenu(id) {
-  // Toggle the selected submenu
-  document.getElementById(id).classList.toggle('hidden');
+  const menu = document.getElementById(id);
+  const isCollapsed = menu.classList.contains('max-h-0');
+
+  // Collapse all others
+  document.querySelectorAll('.sub-menu').forEach(sub => {
+    sub.classList.add('max-h-0');
+    sub.classList.remove('max-h-40');
+  });
+
+  // Expand the selected one if it was collapsed
+  if (isCollapsed) {
+    menu.classList.remove('max-h-0');
+    menu.classList.add('max-h-40');
+  }
 
   // Expand sidebar if collapsed
-  const sidebar = document.getElementById("sidebar");
-  const isCollapsed = sidebar.classList.contains("w-20");
-  if (isCollapsed) {
+  if (sidebarCollapsed) {
     toggleSidebar();
   }
 
-  // Collapse all other submenus
-  const subMenus = document.querySelectorAll(".sub-menu");
-  subMenus.forEach(menu => {
-    if (menu.id !== id) {
-      menu.classList.add("hidden");
-    }
-  });
-
-  // Highlight the corresponding tab-btn
+  // Active tab button logic
   const tabBtns = document.querySelectorAll(".tab-btn");
-  const targetPrefix = id.split("-")[0]; // e.g., "students" from "students-sub"
-
+  const targetPrefix = id.split("-")[0];
   tabBtns.forEach(btn => {
-    const btnPrefix = btn.id?.split("-")[0]; // Safe in case id is missing
+    const btnPrefix = btn.id?.split("-")[0];
     if (btnPrefix === targetPrefix) {
-      btn.classList.add("active"); // You can define "active" in CSS
+      btn.classList.add("active");
     } else {
       btn.classList.remove("active");
     }
