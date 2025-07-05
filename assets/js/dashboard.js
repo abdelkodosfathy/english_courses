@@ -1,17 +1,30 @@
+// const attendanceBtn = document.getElementById("attendance-btn");
+// const sidebarToggleBtn = document.getElementById("sidebar-toggle-btn");
+// const sutdentsBtn = document.getElementById("students-btn");
+// const langBtn = document.getElementById("lang-btn");
+// const coursesBtn = document.getElementById("courses-btn");
+// const teachersBtn = document.getElementById("teachers-btn");
+
+// const btnArr = [
+//   attendanceBtn,
+//   sidebarToggleBtn,
+//   sutdentsBtn,
+//   langBtn,
+//   coursesBtn,
+//   teachersBtn,
+// ];
+
+// btnArr.forEach((element) => {
+//   if (element) {
+//     element.addEventListener("click", (e) => {
+//       console.log("Clicked:", e.target);
+//     });
+//   }
+// });
+
 let sidebarCollapsed = false;  // false = expanded (w-48), true = collapsed (w-20)
 let studentId = 1, teacherId = 1, courseId = 1, attendanceId = 1, scheduleId = 1;
 const students = [], teachers = [], scheduleList = [];
-
-function showTab(tabId) {
-  document.querySelectorAll('.tab-content').forEach(div => {
-    div.classList.add('hidden');
-  });
-  document.getElementById(tabId)?.classList?.remove('hidden');
-
-  if (tabId === "schedule-view") {
-    renderScheduleView();
-  }
-}
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
@@ -88,9 +101,9 @@ function toggleSubMenu(id) {
   tabBtns.forEach(btn => {
     const btnPrefix = btn.id?.split("-")[0];
     if (btnPrefix === targetPrefix) {
-      btn.classList.add("active");
+      btn.classList.add("bg-blue-900", "text-white");
     } else {
-      btn.classList.remove("active");
+      btn.classList.remove("bg-blue-900","text-white");
     }
   });
 }
@@ -289,15 +302,23 @@ function populateScheduleDropdowns() {
   });
 }
 
+
+function toggleLang() {
+  const page = document.querySelector("html");
+  const lang = page.getAttribute("lang");
+  if (lang === "ar") {
+    page.setAttribute("lang", "en");
+  } else if (lang === "en") {
+    page.setAttribute("lang", "ar");
+  }
+  console.log("becomes: ", lang);
+}
+
 window.onload = () => {
-  showTab('schedule-view');
   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
   populateStudentAutocomplete();
   populateTeacherSelect();
 };
-
-
-
 
 const scheduleToday = [
   {
@@ -341,56 +362,6 @@ const scheduleToday = [
     level: "المستوى الرابع"
   }
 ];
-
-
-function renderScheduleView() {
-  // const timeline = document.getElementById("timeline-hours");
-  // const cards = document.getElementById("schedule-cards");
-  // timeline.innerHTML = '';
-  // cards.innerHTML = '';
-
-  // const hourCount = {};
-  // const hourToSessions = {};
-
-  // // إعداد البيانات
-  // scheduleToday.forEach(item => {
-  //   const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
-  //   hourCount[hour] = (hourCount[hour] || 0) + 1;
-  //   hourToSessions[hour] = [...(hourToSessions[hour] || []), item];
-  // });
-
-  // // Render bullets
-  // Object.keys(hourCount).forEach(hour => {
-  //   timeline.innerHTML += `
-  //     <div class="flex flex-col items-center cursor-pointer" onclick="scrollToHour('${hour}')">
-  //       <div class="h-8 w-1 bg-gray-300"></div>
-  //       <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
-  //         ${hourCount[hour]}
-  //       </div>
-  //       <div class="text-xs mt-1 text-gray-700">${hour}</div>
-  //     </div>
-  //   `;
-  // });
-
-  // // Render session cards
-  // scheduleToday.forEach(item => {
-  //   const hour = item.time.split(':')[0] + (item.time.includes('PM') ? ' PM' : ' AM');
-  //   cards.innerHTML += `
-  //     <div class="bg-white border-l-4 border-amber-500 p-4 shadow rounded-lg mb-4 flex items-start justify-between gap-4 flex-wrap">
-  //       <div>
-
-  //         <div class="text-sm text-gray-600 mb-1">${item.time}</div>
-  //         <div class=" text-gray-600 text-lg mb-1">${item.language} - ${item.level}</div>
-  //         <div class=" text-gray-800 text-lg mb-1">اسم المعلم: ${item.teacher}</div>
-  //         <div class=" text-gray-800">قاعة: ${item.room}</div>
-  //       </div>
-  //       <button class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded mt-2 sm:mt-0">
-  //         تسجيل الحضور
-  //       </button>
-  //     </div>
-  //   `;
-  // });
-}
 
 function scrollToHour(hour) {
   // إزالة highlight من كل العناصر المحددة مسبقًا

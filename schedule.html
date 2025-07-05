@@ -1,0 +1,68 @@
+          <!-- schedule view -->
+          <div
+            id="schedule-view"
+            class="tab-content flex flex-col bg-white p-6 rounded-xl shadow h-full"
+          >
+            <h2 class="text-2xl font-bold mb-6">جدول اليوم</h2>
+
+            <div class="flex gap-4 p-2 overflow-y-auto relative flex-1">
+              <!-- Vertical timeline -->
+              <div class="w-20 flex flex-col items-center sticky top-0">
+                <div
+                  id="timeline-hours"
+                  class="flex flex-col items-center gap-1"
+                >
+                  <!-- this is the one pullet -->
+                  <div
+                    class="flex flex-col items-center cursor-pointer"
+                    onclick="scrollToHour('${hour}')"
+                  >
+                    <div class="h-8 w-1 bg-gray-300"></div>
+                    <div
+                      class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-sm font-bold"
+                    >
+                      <!-- ${hourCount[hour]} -->
+                      1
+                    </div>
+                    <div class="text-xs mt-1 text-gray-700">
+                      <!-- ${hour} -->
+                      10:00 AM
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Schedule content -->
+              <div class="flex-1 grid gap-4" id="schedule-cards">
+                <!-- this is one card so you have to repeat it with blade -->
+                <div
+                  class="bg-white max-h-fit border-l-4 border-red-500 p-4 shadow rounded-lg mb-4 flex items-start justify-between gap-4 flex-wrap"
+                >
+                  <div>
+                    <div class="text-sm text-gray-600 mb-1">
+                      <!-- ${item.time} -->
+                      10:00 AM
+                    </div>
+                    <div class="text-gray-600 text-lg mb-1">
+                      <!-- ${item.language} - ${item.level} -->
+                      عربية - المستوي الاول
+                    </div>
+                    <div class="text-gray-800 text-lg mb-1">
+                      <!-- اسم المعلم: ${item.teacher} -->
+                      المعلم: احمد الغندور
+                    </div>
+                    <div class="text-gray-800">
+                      <!-- قاعة: ${item.room} -->
+                      قاعة: 5
+                    </div>
+                  </div>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded mt-2 sm:mt-0"
+                  >
+                    تسجيل الحضور
+                  </button>
+                </div>
+                <!--  -->
+              </div>
+            </div>
+          </div>
