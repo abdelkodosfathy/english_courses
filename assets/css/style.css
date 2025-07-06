@@ -47,8 +47,7 @@ html[lang="en"] #sidebar-toggle-button{
   transform: rotateY(180deg);
 }
 .active{
-    /* background-color: blue; */
-    /* color: white; */
+
   }
   
   .main-content{
