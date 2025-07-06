@@ -10,9 +10,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/toast.css" />
-    <link rel="stylesheet" href="assets/css/schedule.css" />
+    <link rel="stylesheet" href="{{assets('assets/css/style.css')}}" />
+    <link rel="stylesheet" href="{{assets('assets/css/toast.css')}}" />
+    <link rel="stylesheet" href="{{assets('assets/css/schedule.css')}}" />
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,7 +54,7 @@
               class="w-full flex items-center justify-center px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white transition-transform duration-300"
             >
               <span class="tab-label w-full text-start">
-                <img src="assets/img/logo.webp" alt="" width="100">
+                <img src="{{assets('assets/img/logo.webp')}}" alt="" width="100">
               </span>
 
               <!-- change the fa-angle-right to fa-angle-left if it english -->
@@ -293,7 +293,6 @@
         <main class="main-content p-6 ">
           <!-- content -->
           
-          
         </main>
       </div>
     </div>
@@ -318,7 +317,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         console.log("loading");
 
-        // put the file name here !!!!(just for the html functionalty not fpr bade)
+        // put the file name here !!!!(just for the html functionalty not for bade)
         loadContent("dashboardContent.html");
       });
 
@@ -326,7 +325,7 @@
 
 
     
-    <script src="assets/js/dashboard.js"></script>
+    <script src="{{assets('assets/js/dashboard.js')}}"></script>
   </body>
 
   <script>
@@ -362,4 +361,59 @@
     document.getElementById("hijri").textContent = ` ${hijri}`;
 
   </script>
+  
+
+  <!-- <script>
+    const today = new Date();
+    const hijri = today.toLocaleDateString('ar-SA-u-ca-islamic', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).replace(/(\d{2})/(\d{2})/(\d{4})/, '$3/$2/$1');
+
+    document.getElementById("hijri").textContent = hijri;
+</script>
+  <script>
+    function getGregorianAndHijriDate() {
+      const today = new Date();
+
+      // التاريخ الميلادي بصيغة رقمية
+      const gregorian = today
+        .toLocaleDateString("en-EG", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})/(\d{2})/(\d{4})/, "$3/$2/$1"); // يحول من DD/MM/YYYY إلى YYYY/MM/DD
+
+      // التاريخ الهجري بصيغة رقمية
+      const hijri = today
+        .toLocaleDateString("ar-SA-u-ca-islamic", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})/(\d{2})/(\d{4})/, "$3/$2/$1"); // نفس التحويل
+
+      return {
+        gregorian,
+        hijri,
+      };
+    }
+
+    const { gregorian, hijri } = getGregorianAndHijriDate();
+    document.getElementById("gregorian").textContent =  ${gregorian};
+    document.getElementById("hijri").textContent =  ${hijri};
+
+    function toggleLang() {
+      const page = document.querySelector("html");
+      const lang = page.getAttribute("lang");
+      if (lang === "ar") {
+        page.setAttribute("lang", "en");
+      } else if (lang === "en") {
+        page.setAttribute("lang", "ar");
+      }
+      console.log("becomes: ", lang);
+    }
+  </script> -->
 </html>
