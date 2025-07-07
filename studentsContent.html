@@ -23,120 +23,88 @@
     <table class="min-w-full border divide-y divide-gray-200 text-right">
       <thead class="bg-gray-100">
         <tr>
+          <th class="p-3">الكود</th>
           <th class="p-3">الاسم</th>
           <th class="p-3">الصورة</th>
           <th class="p-3">الجنسية</th>
-          <th class="p-3">اللغة</th>
+          
+          <th> التليفون</th>
+          <th> رقم الجواز</th>
+          <th> المستوي الحالي</th>
+          
           <th class="p-3">الإجراءات</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-100">
-        <!-- صف طالب -->
         <tr>
-          <td class="p-3 editable">Ali Ahmed</td>
-          <td class="p-3">
-            <img
-              src="/assets/img/download.png"
-              alt="Student"
-              class="w-10 h-10 rounded-full"
-            />
-          </td>
-          <td class="p-3 editable">مصري</td>
-          <td class="p-3 editable">العربية</td>
-          <td class="p-3 space-x-2 rtl:space-x-reverse">
-            <button
-              class="text-blue-600 hover:text-blue-800"
-              onclick="viewStudent('Ali Ahmed', 'مصري', 'العربية')"
-            >
-              <i class="fa-solid fa-eye"></i>
+            <td class="p-3 editable">ST001</td>
+            <td class="p-3 editable">Ali Ahmed</td>
+            <td class="p-3">
+            <img src="/assets/img/download.png" alt="Student" class="w-10 h-10 rounded-full" />
+            </td>
+            <td class="p-3 editable">مصري</td>
+            <td class="p-3 editable">01012345678</td>
+            <td class="p-3 editable">A1234567</td>
+            <td class="p-3 editable">مبتدئ</td>
+            <td class="p-3 space-x-2 rtl:space-x-reverse">
+            <a href="/students/ST001" class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-eye"></i>
+            </a>
+            <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(this)">
+                <i class="fa-solid fa-trash"></i>
             </button>
-            <button
-              class="text-yellow-500 hover:text-yellow-700"
-              onclick="editRow(this)"
-            >
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-            <button
-              class="text-red-600 hover:text-red-800"
-              onclick="confirmDelete(this)"
-            >
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </td>
+            </td>
         </tr>
-        <!-- يمكنك تكرار الصفوف هنا -->
-      </tbody>
+        <tr>
+            <td class="p-3 editable">ST002</td>
+            <td class="p-3 editable">Sara Mostafa</td>
+            <td class="p-3">
+            <img src="/assets/img/download.png" alt="Student" class="w-10 h-10 rounded-full" />
+            </td>
+            <td class="p-3 editable">سعودي</td>
+            <td class="p-3 editable">05098765432</td>
+            <td class="p-3 editable">B7654321</td>
+            <td class="p-3 editable">متوسط</td>
+            <td class="p-3 space-x-2 rtl:space-x-reverse">
+            <a href="/students/ST002" class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-eye"></i>
+            </a>
+            <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(this)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td class="p-3 editable">ST003</td>
+            <td class="p-3 editable">Youssef Nabil</td>
+            <td class="p-3">
+            <img src="/assets/img/download.png" alt="Student" class="w-10 h-10 rounded-full" />
+            </td>
+            <td class="p-3 editable">أردني</td>
+            <td class="p-3 editable">07999887766</td>
+            <td class="p-3 editable">C3344556</td>
+            <td class="p-3 editable">متقدم</td>
+            <td class="p-3 space-x-2 rtl:space-x-reverse">
+            <a href="/students/ST003" class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-eye"></i>
+            </a>
+            <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(this)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            </td>
+        </tr>
+        </tbody>
+
     </table>
   </div>
-</div>
 
-<!-- مودال العرض -->
-<div
-  id="viewModal"
-  class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center"
->
-  <div class="bg-white p-6 rounded-lg w-96 text-right">
-    <h3 class="text-lg font-bold mb-4">بيانات الطالب</h3>
-    <p id="modalContent" class="mb-4 text-sm text-gray-700"></p>
-    <button
-      onclick="closeModal()"
-      class="px-4 py-2 bg-blue-600 text-white rounded-md"
-    >
-      إغلاق
-    </button>
-  </div>
-
+  
   <script>
     function confirmDelete(button) {
       if (confirm("هل أنت متأكد أنك تريد حذف هذا الطالب؟")) {
         const row = button.closest("tr");
         row.remove();
       }
-    }
-
-    function editRow(button) {
-      const row = button.closest("tr");
-      const editableCells = row.querySelectorAll(".editable");
-
-      editableCells.forEach((cell) => {
-        const value = cell.innerText;
-        cell.innerHTML = `<input class="w-full border px-2 py-1 rounded" value="${value}" />`;
-      });
-
-      // استبدال أيقونة التعديل بالحفظ
-      button.innerHTML = '<i class="fa-solid fa-check"></i>';
-      button.onclick = () => saveRow(button);
-    }
-
-    function saveRow(button) {
-      const row = button.closest("tr");
-      const editableCells = row.querySelectorAll(".editable");
-
-      editableCells.forEach((cell) => {
-        const input = cell.querySelector("input");
-        if (input) cell.innerText = input.value;
-      });
-
-      // استبدال أيقونة الحفظ مرة أخرى بالتعديل
-      button.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-      button.onclick = () => editRow(button);
-    }
-
-    function viewStudent(name, nationality, language) {
-      const modal = document.getElementById("viewModal");
-      const content = document.getElementById("modalContent");
-
-      content.innerHTML = `
-        <strong>الاسم:</strong> ${name}<br />
-        <strong>الجنسية:</strong> ${nationality}<br />
-        <strong>اللغة:</strong> ${language}
-        `;
-
-      modal.classList.remove("hidden");
-    }
-
-    function closeModal() {
-      document.getElementById("viewModal").classList.add("hidden");
     }
   </script>
 </div>

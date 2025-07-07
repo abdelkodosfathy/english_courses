@@ -312,6 +312,7 @@
       </div>
       <main class="main-content p-6 max-h-full overflow-y-auto" style="grid-area: 2 / 2 / 3 / 3">
         <!-- content -->
+
       </main>
       <!-- </div> -->
     </div>
@@ -339,15 +340,16 @@
         console.log("loading");
 
         // put the file name here !!!!(just for the html functionalty not for bade)
-        loadContent("studentsContent.html");
+        // loadContent("studentsContent.html");
+        loadContent("showStudent.html");
         // loadContent("dashboardContent.html");
       });
     </script>
 
-    <!-- <script src="{{asset('assets/js/dashboard.js')}}"></script> -->
-    <script src="assets/js/dashboard.js"></script>
-    <!-- <script src="{{asset('assets/js/students.js')}}"></script> -->
-    <script src="assets/js/students.js"></script>
+    <script src="{{asset('assets/js/dashboard.js')}}"></script>
+    <!-- <script src="assets/js/dashboard.js"></script> -->
+    <script src="{{asset('assets/js/students.js')}}"></script>
+    <!-- <script src="assets/js/students.js"></script> -->
   </body>
 
   <script>
@@ -381,7 +383,7 @@
     const { gregorian, hijri } = getGregorianAndHijriDate();
     document.getElementById("gregorian").textContent = ` ${gregorian}`;
     document.getElementById("hijri").textContent = ` ${hijri}`;
-  </script>
+</script>
 
 
 </html>

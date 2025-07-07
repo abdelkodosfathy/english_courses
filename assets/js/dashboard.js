@@ -314,11 +314,11 @@ function toggleLang() {
   console.log("becomes: ", lang);
 }
 
-window.onload = () => {
-  document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
-  populateStudentAutocomplete();
-  populateTeacherSelect();
-};
+// window.onload = () => {
+//   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
+//   populateStudentAutocomplete();
+//   populateTeacherSelect();
+// };
 
 const scheduleToday = [
   {
@@ -382,3 +382,6 @@ function scrollToHour(hour) {
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+
+    const row = document.querySelector('#student-profile');
+    console.log(row);

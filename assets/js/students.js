@@ -1,3 +1,4 @@
+// student row deleting
   function confirmDelete(button) {
     if (confirm("هل أنت متأكد أنك تريد حذف هذا الطالب؟")) {
       const row = button.closest("tr");
@@ -5,47 +6,31 @@
     }
   }
 
-  function editRow(button) {
-    const row = button.closest("tr");
-    const editableCells = row.querySelectorAll(".editable");
+  // show student
+  function renderLevelBar(container, currentLevel) {
+    container.innerHTML = "";
+    const bar = document.createElement("div");
+    bar.className = "flex flex-1 items-center justify-between w-full";
 
-    editableCells.forEach((cell) => {
-      const value = cell.innerText;
-      cell.innerHTML = `<input class="w-full border px-2 py-1 rounded" value="${value}" />`;
+    for (let i = 1; i <= 16; i++) {
+      const segment = document.createElement("span");
+      segment.className = `flex-1 h-1 ${i <= currentLevel ? "bg-blue-600" : "bg-gray-300"} relative`;
+
+      const circle = document.createElement("span");
+      circle.className = "absolute -top-2 left-0 w-5 h-5 bg-white border shadow-md text-xs font-bold rounded-full flex items-center justify-center";
+      circle.textContent = i;
+
+      segment.appendChild(circle);
+      bar.appendChild(segment);
+    }
+
+    container.appendChild(bar);
+  }
+
+  window.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('[data-render-level]').forEach(el => {
+      const level = parseInt(el.dataset.level) || 1;
+      renderLevelBar(el, level);
     });
+  });
 
-    // استبدال أيقونة التعديل بالحفظ
-    button.innerHTML = '<i class="fa-solid fa-check"></i>';
-    button.onclick = () => saveRow(button);
-  }
-
-  function saveRow(button) {
-    const row = button.closest("tr");
-    const editableCells = row.querySelectorAll(".editable");
-
-    editableCells.forEach((cell) => {
-      const input = cell.querySelector("input");
-      if (input) cell.innerText = input.value;
-    });
-
-    // استبدال أيقونة الحفظ مرة أخرى بالتعديل
-    button.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-    button.onclick = () => editRow(button);
-  }
-
-  function viewStudent(name, nationality, language) {
-    const modal = document.getElementById("viewModal");
-    const content = document.getElementById("modalContent");
-
-    content.innerHTML = `
-      <strong>الاسم:</strong> ${name}<br />
-      <strong>الجنسية:</strong> ${nationality}<br />
-      <strong>اللغة:</strong> ${language}
-    `;
-
-    modal.classList.remove("hidden");
-  }
-
-  function closeModal() {
-    document.getElementById("viewModal").classList.add("hidden");
-  }
