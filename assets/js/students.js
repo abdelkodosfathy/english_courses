@@ -34,3 +34,24 @@
     });
   });
 
+
+
+  // edit student data button 
+  document.getElementById('edit-toggle-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const form = document.querySelector('#student-profile form');
+
+    // تأكد إن كل العناصر input, select, textarea إلخ مش disabled (يعني جاهزة للتعديل)
+    form.querySelectorAll('input, select, textarea').forEach((el) => {
+      el.removeAttribute('disabled');
+      el.classList.remove('pointer-events-none', 'bg-gray-100', 'text-gray-500');
+    });
+
+    // أظهر زر الحفظ إن كان مخفي
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.classList.remove('hidden');
+
+    // إخفاء زر التعديل الأساسي
+    this.classList.add('hidden');
+  });
