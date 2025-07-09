@@ -10,8 +10,6 @@
     <div>
       <label class="block text-gray-500 mb-1">اسم الكورس</label>
       <select id="courseSelect" class="w-full px-3 py-2 border rounded-md shadow-sm">
-        <option>برمجة</option>
-        <option>رياضيات</option>
         <option>لغة إنجليزية</option>
       </select>
     </div>
@@ -61,29 +59,32 @@
     <table class="min-w-full border divide-y divide-gray-200 text-right">
       <thead class="bg-gray-100">
         <tr>
-          <th class="p-3">الكورس</th>
-          <th class="p-3">المستوى</th>
-          <th class="p-3">المدرس</th>
-          <th class="p-3">التوقيت</th>
-          <th class="p-3">كود الطالب</th>
-          <th class="p-3">إجراء</th>
+          <!-- <th class="p-3">الكورس</th> -->
+          <!-- <th class="p-3">المستوى</th> -->
+          <!-- <th class="p-3">المدرس</th> -->
+          <th class="p-3 w-32 border-l-2 border">كود الطالب</th>
+          <th class="p-3 border-x-2 border">الاسم</th>
+          <th class="p-3">الحالة</th>
         </tr>
       </thead>
       <tbody id="attendanceTableBody" class="divide-y divide-gray-100">
         <!-- الصفوف ستُضاف هنا ديناميكياً -->
 
-        <tr>
-          <td class="p-3">لغة إنجليزية</td>
-          <td class="p-3">متوسط</td>
-          <td class="p-3">أ. سارة</td>
-          <td class="p-3">2025-07-08 10:00 صباحاً</td>
-          <td class="p-3">ST109</td>
-          <td class="p-3">
-            <button class="text-red-600 hover:text-red-800" onclick="this.closest('tr').remove()">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </td>
-        </tr>
+          <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
+          <tr class="bg-green-50 hover:bg-green-100">
+            <td class="p-3 w-32 border-l border-b">ST109</td>
+            <td class="p-3 border-l border-b">احمد علي</td>
+            <td class="p-3 border-b">
+              حاضر
+            </td>
+          </tr>
+          <tr class="bg-red-50 hover:bg-red-100">
+            <td class="p-3 w-32 border-l border-b">ST109</td>
+            <td class="p-3 border-l border-b">احمد علي</td>
+            <td class="p-3 border-b">
+              حاضر
+            </td>
+          </tr>
 
       </tbody>
     </table>

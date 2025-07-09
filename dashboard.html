@@ -285,29 +285,31 @@
 
       <!-- Main Content -->
       <!-- <div class="max-h-screen h-screen flex-1"> -->
-      <div
-        class="w-full bg-white py-3 px-6 flex items-center justify-between border-b border-gray-200 h-[77px]"
-        style="grid-area: 1 / 2 / 2 / 3"
-      >
-        <!-- التاريخ الهجري والميلادي -->
-        <div class="text-right space-y-1">
-          <p id="gregorian" class="text-sm text-blue-900">2025/7/1</p>
-          <p id="hijri" class="text-sm text-blue-900">1447/1/5</p>
-        </div>
+      <div class="px-6 max-h-full">
+        <div
+          class="w-full bg-white py-3 px-6 flex items-center justify-between rounded-b-xl shadow h-[77px]"
+          style="grid-area: 1 / 2 / 2 / 3"
+        >
+          <!-- التاريخ الهجري والميلادي -->
+          <div class="text-right space-y-1">
+            <p id="gregorian" class="text-sm text-blue-900">2025/7/1</p>
+            <p id="hijri" class="text-sm text-blue-900">1447/1/5</p>
+          </div>
 
-        <!-- العنوان -->
-        <h1 class="text-xl font-semibold text-blue-900 text-center">
-          بسم الله الرحمن الرحيم
-        </h1>
+          <!-- العنوان -->
+          <h1 class="text-xl font-semibold text-blue-900 text-center">
+            بسم الله الرحمن الرحيم
+          </h1>
 
-        <!-- معلومات الدورة -->
-        <div class="text-left space-y-1">
-          <p class="text-sm text-ble-900">رقم الدورة: 6</p>
-          <button
-            class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-1 rounded transition"
-          >
-            إنهاء
-          </button>
+          <!-- معلومات الدورة -->
+          <div class="text-left space-y-1">
+            <p class="text-sm text-ble-900">رقم الدورة: 6</p>
+            <button
+              class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-1 rounded transition"
+            >
+              إنهاء
+            </button>
+          </div>
         </div>
       </div>
       <main class="main-content p-6 max-h-full overflow-y-auto" style="grid-area: 2 / 2 / 3 / 3">
@@ -341,10 +343,11 @@
 
         // put the file name here !!!!(just for the html functionalty not for bade)
         // loadContent("studentsContent.html");
-        loadContent("studensAttendanceOne.html");
+        // loadContent("studensAttendanceOne.html");
         // loadContent("studensAttendanceTwo.html");
         // loadContent("showStudent.html");
         // loadContent("dashboardContent.html");
+        loadContent("teacherAttendance.html");
       });
     </script>
 

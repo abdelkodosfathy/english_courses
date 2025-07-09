@@ -32,7 +32,7 @@
       id="studentIdInput"
       type="text"
       placeholder="أدخل كود الطالب (مثلاً ST001)"
-      class="flex-1 px-4 py-2 border rounded-md shadow-sm"
+      class="flex-1 px-4 py-2 border rounded-md "
     />
 
     <!-- زر تسجيل -->
@@ -45,31 +45,35 @@
   </div>
 
   <!-- جدول الحضور -->
-  <div class="overflow-x-auto mt-6">
-    <table class="min-w-full border divide-y divide-gray-200 text-right">
+  <div class="overflow-x-auto mt-6 rounded-xl shadow-sm">
+    <table class="min-w-full text-right">
       <thead class="bg-gray-100">
         <tr>
-          <th class="p-3">الكورس</th>
-          <th class="p-3">المستوى</th>
-          <th class="p-3">التاريخ</th>
-          <th class="p-3">كود الطالب</th>
-          <th class="p-3">إجراء</th>
+          <th class="p-3 w-32 border-l border-b">كود الطالب</th>
+          <th class="p-3 border-l border-b">الاسم</th>
+          <th class="p-3 border-b">الحالة</th>
         </tr>
       </thead>
-      <tbody id="attendanceTableBody" class="divide-y divide-gray-100">
+      <tbody id="attendanceTableBody" class="">
         <!-- الصفوف تضاف تلقائيًا -->
 
-          <tr>
-            <td class="p-3">لغة إنجليزية</td>
-            <td class="p-3">متوسط</td>
-            <td class="p-3">2025-07-08 08:00 صباحًا</td>
-            <td class="p-3">ST104</td>
-            <td class="p-3">
-              <button class="text-red-600 hover:text-red-800" onclick="this.closest('tr').remove()">
-                <i class="fa-solid fa-trash"></i>
-              </button>
+
+          <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
+          <tr class="bg-green-50 hover:bg-green-100">
+            <td class="p-3 w-32 border-l border-b">ST109</td>
+            <td class="p-3 border-l border-b">احمد علي</td>
+            <td class="p-3 border-b">
+              حاضر
             </td>
           </tr>
+          <tr class="bg-red-50 hover:bg-red-100">
+            <td class="p-3 w-32 border-l border-b">ST109</td>
+            <td class="p-3 border-l border-b">احمد علي</td>
+            <td class="p-3 border-b">
+              غائب
+            </td>
+          </tr>
+
 
       </tbody>
     </table>
