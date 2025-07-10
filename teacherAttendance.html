@@ -1,0 +1,69 @@
+<div
+  id="attendance-view"
+  class="h-full tab-content overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-2"
+>
+  <!-- العنوان -->
+  <h2 class="text-2xl font-bold text-blue-900 mb-4">تسجيل الحضور</h2>
+  
+  <!-- إدخال كود المعلم -->
+  <!-- <div class="flex flex-wrap items-center gap-2 mb-4">
+
+      <input
+        id="studentIdInput"
+        type="text"
+        placeholder="أدخل كود المعلم (مثلاً T001)"
+        class="flex-1 px-4 py-2 border rounded-md shadow-sm"
+      />
+
+      <button
+        onclick="registerAttendance()"
+        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+      >
+        تسجيل الحضور
+      </button>
+  </div> -->
+
+  <!-- جدول الحضور -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-right">
+      <thead class="">
+        <tr>
+          <!-- <th class="p-3 w-32 border-l-2 border"> المعلم</th> -->
+          <th class="p-3 border-b border-gray-300">المستوي</th>
+          <th class="p-3 border-b border-gray-300">الكورس</th>
+          <th class="p-3 border-b border-gray-300">المعلم</th>
+          <th class="p-3 border-b border-gray-300">الوقت</th>
+          <th class="p-3 border-b border-gray-300">التاريخ</th>
+          <th class="p-3 border-b border-gray-300">التسجيل</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceTableBody" class="">
+        <!-- الصفوف ستُضاف هنا ديناميكياً -->
+          <tr class="hover:bg-gray-100">
+          <!-- <tr class="bg-red-50"> -->
+            <td class="p-3 border-b border-gray-300">16</td>
+            <td class="p-3 border-b border-gray-300 w-32">1</td>
+            <td class="p-3 border-b border-gray-300">اللغة العربية</td>
+            <td class="p-3 border-b border-gray-300">8:00 AM</td>
+            <td class="p-3 border-b border-gray-300">Jul-2025-07</td>
+            <td class="p-3 border-b border-gray-300">
+              <button class="bg-green-600 p-2 text-white rounded-md">تسجيل الحضور</button>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-gray-100">
+          <!-- <tr class="bg-red-50"> -->
+            <td class="p-3 border-b border-gray-300">12</td>
+            <td class="p-3 border-b border-gray-300 w-32">1</td>
+            <td class="p-3 border-b border-gray-300">اللغة العربية</td>
+            <td class="p-3 border-b border-gray-300">8:00 AM</td>
+            <td class="p-3 border-b border-gray-300">Jul-2025-07</td>
+            <td class="p-3 border-b border-gray-300">
+              <button class="bg-green-600 p-2 text-white rounded-md">تسجيل الحضور</button>
+            </td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

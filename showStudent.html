@@ -1,0 +1,222 @@
+<form
+  id="student-profile-view"
+  class="h-full tab-content overflow-y-auto flex flex-col items-center bg-white p-6 rounded-xl shadow space-y-6"
+>
+  <h2 class="text-2xl font-bold text-blue-900">بيانات الطالب</h2>
+
+  <!-- الهوية الأساسية + الصورة الشخصية -->
+  <div class="w-full max-w-4xl border-t pt-6">
+    <div class="flex flex-col items-center gap-4">
+      <div class="w-32 h-32">
+        <img
+          src="/assets/img/download.png"
+          alt="صورة الطالب"
+          class="w-full h-full object-cover rounded-full shadow-md"
+        />
+      </div>
+      <div class="flex items-center gap-3 text-xl font-semibold text-gray-800">
+        <!-- <span>علي أحمد</span> -->
+        <input type="text" disabled class="caret-black bg-transparent text-end" value="علي احمد" />
+        <span class="text-gray-400">|</span>
+        <input type="text" disabled class="caret-black bg-transparent text-start" value="Ali Ahmed" />
+        <!-- <span>Ali Ahmed</span> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- الاتصال والجوازات -->
+  <div class="w-full max-w-4xl border-t pt-6">
+    <!-- <h3 class="text-lg font-semibold text-gray-700 mb-4">الاتصال والجوازات</h3> -->
+    <div class="space-y-6">
+      <!-- صف: رقم الهاتف -->
+      <div>
+        <label class="block text-gray-500 mb-1">رقم الهاتف</label>
+        <a
+        href="#"
+          class="text-blue-600 hover:underline flex items-center gap-2"
+        >
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" value="01012345678" disabled class="caret-black bg-transparent text-end">
+        </a>
+      </div>
+
+      <!-- صف: الجنسية + الجنسيات الأخرى -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-gray-500 mb-1">الجنسية</label>
+          <span
+            class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+            >مصري</span
+          >
+        </div>
+        <div>
+          <label class="block text-gray-500 mb-1">جنسيات أخرى</label>
+          <div class="space-x-1 rtl:space-x-reverse">
+            <span
+              class="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full"
+              >سعودي</span
+            >
+            <span
+              class="inline-block bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full"
+              >سوري</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- صف: رقم الجواز + صورة الجواز -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <label class="block text-gray-500 mb-1">رقم الجواز</label>
+          <input type="text" disabled value="A1234567" class="text-gray-800 font-medium bg-transparent"/>
+        </div>
+        <div>
+          <label class="block text-gray-500 mb-1">صورة جواز السفر</label>
+          <img
+            src="/assets/img/passport.jpg"
+            alt="جواز السفر"
+            class="w-24 h-16 object-cover rounded-md border cursor-pointer hover:scale-105 transition"
+            onclick="window.open(this.src, '_blank')"
+          />
+
+          <!-- show when edit -->
+          <div class="hidden relative w-32 h-32 border-2 border-dashed border-gray-300 rounded flex items-center justify-center overflow-hidden">
+            <img id="passport-preview" src="" alt="Preview" class="w-full h-full object-cover hidden" />
+            <span id="placeholder" class="text-gray-400 text-sm">اختر صورة</span>
+            <input
+              type="file"
+              accept="image/*"
+              class="absolute inset-0 opacity-0 cursor-pointer"
+              onchange="handleImageChange(event)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- البيانات الأكاديمية -->
+  <div class="w-full max-w-4xl border-t pt-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="md:col-span-2">
+        <label class="block text-gray-500 mb-6"
+          >المستوى الحالي: <span id="level-label">4</span></label
+        >
+
+        <!--put the student level in the data-level -->
+        <div
+          id="level-bar"
+          class="relative w-full flex items-center justify-between"
+          data-level="9"
+          data-render-level
+        ></div>
+      </div>
+
+      <div>
+        <div>
+          <label class="block text-gray-500 mb-1">الفترة الحالية</label>
+          <input
+            type="number"
+            value="1"
+            disabled
+            class="caret-transparent bg-transparent  font-bold text-lg px-4 py-2 w-fit "
+          />
+        </div>
+      </div>
+      <div>
+        <label class="block text-gray-500 mb-1">تكلفة المستوى</label>
+        <div class="flex items-center bg-green-50 rounded shadow-sm w-fit px-4 py-2 text-lg font-bold text-gray-800">
+          <input
+            type="number"
+            value="5000"
+            disabled
+            class="bg-transparent caret-black w-20 text-end outline-none"
+          />
+          <span class="ml-2 text-green-800 text-sm">جنيه</span>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- المعلومات الشخصية -->
+  <div
+    class="w-full max-w-4xl border-t pt-6 grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"
+  >
+    <div>
+      <label class="block text-gray-500 mb-1">النوع</label>
+      <div class="flex items-center gap-4 text-gray-800 font-medium">
+        <!-- Male Option -->
+        <label id="radio-male" class="flex items-center gap-2 cursor-pointer">
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            checked
+            data-gender="male"
+            class="appearance-none"
+          />
+          <i class="fa-solid fa-mars text-blue-600"></i>
+          <span>ذكر</span>
+        </label>
+
+        <!-- Female Option -->
+        <label id="radio-female" class="flex items-center gap-2 cursor-pointer hidden">
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            disabled
+            data-gender="male"
+            class="appearance-none"
+          />
+          <i class="fa-solid fa-venus text-pink-500"></i>
+          <span>أنثى</span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <label class="block text-gray-500 mb-1">تاريخ الميلاد</label>
+      <input
+      disabled
+        type="date"
+        value="2000-01-01"
+        class="bg-transparent caret-black font-medium text-end w-fit"
+      />
+    </div>
+
+  </div>
+  <!-- زر التعديل -->
+  <div class="border-t pt-6 w-full max-w-4xl text-center">
+    <!-- <button id="editBtn" class="mt-4 px-6 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600">
+      تعديل البيانات
+    </button> -->
+    <div id="buttons-wrapper" class="text-center">
+      <!-- Edit Button (default visible) -->
+      <button
+        id="editBtn"
+        class="mt-4 px-6 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+      >
+        تعديل البيانات
+      </button>
+
+      <!-- Save/Cancel Buttons (hidden by default) -->
+      <div id="actionButtons" class="mt-4 space-x-2 rtl:space-x-reverse hidden">
+        <button
+          id="saveBtn"
+          class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+        >
+          حفظ
+        </button>
+        <button
+          id="cancelBtn"
+          class="px-6 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500"
+        >
+          إلغاء
+        </button>
+      </div>
+    </div>
+
+  </div>
+</form>

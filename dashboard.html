@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="{{assets('assets/css/style.css')}}" /> -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- <link rel="stylesheet" href="{{assets('assets/css/toast.css')}}" /> -->
+    <link rel="stylesheet" href="assets/css/toast.css" />
+    <!-- <link rel="stylesheet" href="{{assets('assets/css/schedule.css')}}" /> -->
+    <link rel="stylesheet" href="assets/css/schedule.css" />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 text-gray-800" dir="rtl">
+    <!-- Toast container -->
+    <div
+      id="toast"
+      class="fixed top-5 right-5 bg-white px-4 py-2 rounded shadow-md hidden z-50 overflow-hidden "
+    >
+      Row added successfully!
+      <div
+        id="toast-progress"
+        class="absolute bottom-0 left-0 h-1 bg-blue-500"
+      ></div>
+    </div>
+
+    <!-- right side Wrapper  -->
+    <!-- <div class="flex max-h-screen h-screen"> -->
+    <div
+      class="max-h-screen h-screen"
+      style="
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      "
+    >
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="px-2 bg-white transition-all duration-[500ms] w-48 overflow-hidden border-l-2 border-gray-200"
+        style="grid-area: 1 / 1 / 3 / 2"
+        aria-label="Main Sidebar Navigation"
+      >
+        <div class="flex flex-col items-start py-6 space-y-4 h-full">
+          <!-- Toggle Button -->
+          <div class="w-full flex justify-end">
+            <button
+              id="sidebar-toggle-btn"
+              onclick="toggleSidebar()"
+              aria-label="Toggle Sidebar"
+              class="w-full flex items-center justify-center px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white transition-transform duration-300"
+            >
+              <span class="tab-label w-full text-start">
+                <img
+                  src="{{assets('assets/img/logo.webp')}}"
+                  alt=""
+                  width="100"
+                />
+              </span>
+
+              <!-- change the fa-angle-right to fa-angle-left if it english -->
+              <i
+                id="sidebar-toggle-icon"
+                class="fa fa-angle-right text-xl transition-transform duration-300"
+              ></i>
+            </button>
+          </div>
+
+          <!-- Dashboard -->
+          <!-- onclick="toggleSidebar();" -->
+          <div class="w-full">
+            <button
+              class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+              aria-label="Toggle Sidebar"
+            >
+              <i class="fa-solid fa-bars text-lg w-6 text-center"></i>
+              <!-- Dashboard -->
+              <span class="tab-label mr-2">لوحة التحكم</span>
+              <!-- <span class="tab-label mr-2">{{ __('dashbaord.') }}</span> -->
+            </button>
+          </div>
+
+          <!-- Students -->
+          <div class="w-full">
+            <button
+              id="students-btn"
+              onclick="toggleSubMenu('students-sub');"
+              class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+              aria-expanded="false"
+              aria-controls="students-sub"
+            >
+              <i class="fa fa-user-graduate text-lg w-6 text-center"></i>
+              <!-- Students -->
+              <span class="tab-label mr-2">الطلاب</span>
+            </button>
+            <!-- class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 bg-white/20 rounded-md shadow-inner text-right" -->
+            <ul
+              id="students-sub"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              role="menu"
+              aria-label="Students submenu"
+            >
+              <li role="none">
+                <!-- Add Student -->
+                <a
+                  href="{{ route('students.create') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >إضافة طالب</a
+                >
+              </li>
+              <li role="none">
+                <!-- Student Table -->
+                <a
+                  href="{{ route('students.index') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >جدول الطلاب</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Teachers -->
+          <div class="w-full">
+            <button
+              id="teachers-btn"
+              onclick="toggleSubMenu('teachers-sub')"
+              class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+              aria-expanded="false"
+              aria-controls="teachers-sub"
+            >
+              <i class="fa fa-chalkboard-teacher text-lg w-6 text-center"></i>
+              <!-- Teachers -->
+              <span class="tab-label mr-2">المعلمين</span>
+            </button>
+            <ul
+              id="teachers-sub"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              role="menu"
+              aria-label="Teachers submenu"
+            >
+              <li role="none">
+                <!-- Add Teacher -->
+                <a
+                  href="{{ route('teachers.create') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >إضافة معلم</a
+                >
+              </li>
+              <li role="none">
+                <!-- Teacher Table -->
+                <a
+                  href="{{ route('teachers.index') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >جدول المعلمين</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Courses -->
+          <div class="w-full">
+            <button
+              id="courses-btn"
+              onclick="toggleSubMenu('courses-sub')"
+              class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+              aria-expanded="false"
+              aria-controls="courses-sub"
+            >
+              <i class="fa fa-book text-lg w-6 text-center"></i>
+              <!-- Courses -->
+              <span class="tab-label mr-2">الكورسات</span>
+            </button>
+            <ul
+              id="courses-sub"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              role="menu"
+              aria-label="Courses submenu"
+            >
+              <li role="none">
+                <!-- Add Course -->
+                <a
+                  href="{{ route('courses.create') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >إضافة كورس</a
+                >
+              </li>
+              <li role="none">
+                <!-- Course Table -->
+                <a
+                  href="{{ route('courses.index') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >جدول الكورسات</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Attendance -->
+          <div class="w-full">
+            <button
+              id="attendance-btn"
+              onclick="toggleSubMenu('attendance-sub')"
+              class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+              aria-expanded="false"
+              aria-controls="attendance-sub"
+            >
+              <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+              <!-- Attendance -->
+              <span class="tab-label mr-2">الحضور</span>
+            </button>
+            <ul
+              id="attendance-sub"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              role="menu"
+              aria-label="Attendance submenu"
+            >
+              <li role="none">
+                <!-- Mark Attendance -->
+                <a
+                  href="{{ route('attendance.create') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >تسجيل حضور</a
+                >
+              </li>
+              <li role="none">
+                <!-- Attendance Table -->
+                <a
+                  href="{{ route('attendance.index') }}"
+                  role="menuitem"
+                  tabindex="-1"
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >جدول الحضور</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Language Switcher Button -->
+          <div
+            class="w-full button:justify-center flex-1 flex justify-end flex-col"
+          >
+            <button
+              onclick="toggleLang()"
+              class="w-full flex items-center justify-center gap-1 px-4 py-2 bg-white/20 hover:bg-white hover:text-blue-900 rounded transition"
+            >
+              <i class="fa fa-globe text-lg w-6 text-center"></i>
+              <span class="tab-label">English</span>
+            </button>
+            <button
+              class="w-full flex items-center justify-center gap-1 px-4 py-2 bg-white/20 hover:bg-white hover:text-blue-900 rounded transition mt-1"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="tab-label"> تسجيل الخروج </span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <!-- <div class="max-h-screen h-screen flex-1"> -->
+      <div class="px-6 max-h-full">
+        <div
+          class="w-full bg-white py-3 px-6 flex items-center justify-between rounded-b-xl shadow h-[77px]"
+          style="grid-area: 1 / 2 / 2 / 3"
+        >
+          <!-- التاريخ الهجري والميلادي -->
+          <div class="text-right space-y-1">
+            <p id="gregorian" class="text-sm text-blue-900">2025/7/1</p>
+            <p id="hijri" class="text-sm text-blue-900">1447/1/5</p>
+          </div>
+
+          <!-- العنوان -->
+          <h1 onclick="showToast('welcome')" class="text-xl font-semibold text-blue-900 text-center">
+            بسم الله الرحمن الرحيم
+          </h1>
+
+          <!-- معلومات الدورة -->
+          <div class="text-left space-y-1">
+            <p class="text-sm text-ble-900">رقم الدورة: 6</p>
+            <button
+              class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-1 rounded transition"
+            >
+              إنهاء
+            </button>
+          </div>
+        </div>
+      </div>
+      <main class="main-content p-6 max-h-full overflow-y-auto" style="grid-area: 2 / 2 / 3 / 3">
+        <!-- content -->
+
+      </main>
+      <!-- </div> -->
+    </div>
+    <!-- end of the right side wrapper -->
+    
+    <!-- load content inside the main-content -->
+    <script>
+      function loadContent(file) {
+        document.querySelector("main.main-content").innerHTML =
+          "<p>تعذر تحميل المحتوى</p>";
+
+        fetch(file)
+          .then((response) => response.text())
+          .then((html) => {
+            document.querySelector("main.main-content").innerHTML = html;
+          })
+          .catch((err) => {
+            document.querySelector("main.main-content").innerHTML =
+              "<p>تعذر تحميل المحتوى</p>";
+          });
+      }
+
+      // هات الفايل لما الصحة تحمل
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("loading");
+
+        // put the file name here !!!!(just for the html functionalty not for bade)
+        // loadContent("studentsContent.html");
+        // loadContent("studensAttendanceOne.html");
+        loadContent("studensAttendanceTwo.html");
+        // loadContent("showStudent.html");
+        // loadContent("dashboardContent.html");
+        // loadContent("teacherAttendance.html");
+      });
+    </script>
+
+    <!-- <script src="{{asset('assets/js/dashboard.js')}}"></script> -->
+    <script src="assets/js/dashboard.js"></script>
+    <!-- <script src="{{asset('assets/js/students.js')}}"></script> -->
+    <script src="/assets/js/students.js"></script>
+
+    <!-- <script src="{{asset('assets/js/attendance.js')}}"></script> -->
+    <script src="/assets/js/attendance.js"></script>
+  </body>
+
+  <script>
+    function getGregorianAndHijriDate() {
+      const today = new Date();
+
+      // التاريخ الميلادي بصيغة رقمية
+      const gregorian = today
+        .toLocaleDateString("en-EG", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1"); // يحول من DD/MM/YYYY إلى YYYY/MM/DD
+
+      // التاريخ الهجري بصيغة رقمية
+      const hijri = today
+        .toLocaleDateString("ar-SA-u-ca-islamic", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1"); // نفس التحويل
+
+      return {
+        gregorian,
+        hijri,
+      };
+    }
+
+    const { gregorian, hijri } = getGregorianAndHijriDate();
+    document.getElementById("gregorian").textContent = ` ${gregorian}`;
+    document.getElementById("hijri").textContent = ` ${hijri}`;
+</script>
+
+
+</html>

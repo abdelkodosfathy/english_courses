@@ -1,0 +1,41 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #FF006E;
+  --color-secondary: #FFBE0B;
+  --color-accent: #3A86FF;
+
+  /* Neutral Colors */
+  --color-white: #ffffff;
+  --color-light: #f1f1f1;
+  --color-dark: #1a1a1a;
+  --color-text: #212529;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+
+  /* Hover States */
+  --hover-bg: var(--color-white);
+  --hover-text: var(--color-primary);
+
+  /* Border radius */
+  --radius: 0.5rem;
+
+  /* Transitions */
+  --transition: all 0.3s ease-in-out;
+}
+
+/* Example Global Usage */
+body {
+  background-color: var(--color-light);
+  color: var(--color-text);
+}
+
+#sidebar {
+  background: var(--gradient-primary);
+}
+
+.tab-btn:hover,
+#sidebar-toggle-btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--hover-text);
+}
