@@ -101,9 +101,9 @@ function toggleSubMenu(id) {
   tabBtns.forEach(btn => {
     const btnPrefix = btn.id?.split("-")[0];
     if (btnPrefix === targetPrefix) {
-      btn.classList.add("bg-blue-900", "text-white");
+      btn.classList.add("bg-blue-900", "text-white", "hover:bg-blue-900", "hover:text-white");
     } else {
-      btn.classList.remove("bg-blue-900","text-white");
+      btn.classList.remove("bg-blue-900","text-white", "hover:bg-blue-900", "hover:text-white");
     }
   });
 }

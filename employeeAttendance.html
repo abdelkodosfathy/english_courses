@@ -1,0 +1,95 @@
+<div
+id="attendance-view"
+class="h-full tab-content overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
+>
+<!-- العنوان + التاريخ -->
+<div class="flex items-center justify-between gap-2">
+  <h2 class="text-2xl font-bold text-blue-900">تسجيل حضور الموظفين</h2>
+  <span class="text-gray-500 font-medium text-base pt-1" id="lecture-date">
+      <!-- 2025-07-08 | 8:00 AM -->
+      <!-- سيتم ملؤه عبر JavaScript -->
+    </span>
+</div>
+
+<div class="flex flex-wrap items-center gap-2 mb-4">
+  <input
+    id="studentIdInput"
+    type="text"
+    placeholder="يتم الادخال من خلال البصمة"
+    class="flex-1 px-4 py-2 border rounded-md "
+  />
+</div>
+
+<!-- جدول الحضور -->
+<div class="overflow-x-auto mt-6 rounded-xl shadow-sm">
+  <table class="min-w-full text-right">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="p-3 w-32 border-l border-b">كود الموظف</th>
+        <th class="p-3 border-l border-b">الاسم</th>
+        <th class="p-3 border-b">التوقيت</th>
+      </tr>
+    </thead>
+    <tbody id="attendanceTableBody" class="">
+      <!-- الصفوف تضاف تلقائيًا -->
+
+
+        <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
+        <tr class="bg-green-50 hover:bg-green-100">
+          <td class="p-3 w-32 border-l border-b">EM-101</td>
+          <td class="p-3 border-l border-b">ابن الشركة</td>
+          <td class="p-3 border-b">
+            <!-- التوقيت -->
+             07:54 AM
+          </td>
+        </tr>
+        <tr class="bg-red-50 hover:bg-red-100">
+          <td class="p-3 w-32 border-l border-b">EM-102</td>
+          <td class="p-3 border-l border-b">خالد اعذار</td>
+          <td class="p-3 border-b">
+            <!-- التوقيت -->
+            <!-- 8:04 AM -->
+
+          </td>
+        </tr>
+
+        <!-- متأخر -->
+        <tr class="bg-yellow-50 hover:bg-red-100">
+          <td class="p-3 w-32 border-l border-b">EM-103</td>
+          <td class="p-3 border-l border-b">وليد مواعيد</td>
+          <td class="p-3 border-b">
+            <!-- التوقيت -->
+            09:24 AM
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+  function updateLectureTime() {
+    const now = new Date();
+
+    // تنسيق التاريخ: yyyy-mm-dd | hh:mm AM/PM
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12 || 12; // تحويل إلى تنسيق 12 ساعة
+
+    const formatted = `${year}-${month}-${day} | ${hours}:${minutes} ${ampm}`;
+
+    document.getElementById('lecture-date').textContent = formatted;
+  }
+
+  // تحديث كل ثانية
+  setInterval(updateLectureTime, 1000);
+  updateLectureTime(); // تشغيل فوري عند التحميل
+</script>
+
+</div>

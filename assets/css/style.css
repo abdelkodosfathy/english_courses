@@ -42,7 +42,8 @@ html[lang="en"] body {
 html[lang="en"] #sidebar-toggle-button{
   transform: rotateY(180deg);
 }
-.active{
+.active:hover{
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1)) !important;
 }
 
 .main-content{

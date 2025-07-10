@@ -28,6 +28,8 @@
   <body class="bg-gray-100 text-gray-800" dir="rtl">
     <!-- Toast container -->
     <div
+      onmouseenter="holdToast(true)"
+      onmouseleave="holdToast(false)"
       id="toast"
       class="fixed top-5 right-5 bg-white px-4 py-2 rounded shadow-md hidden z-50 overflow-hidden "
     >
@@ -112,7 +114,7 @@
             <!-- class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 bg-white/20 rounded-md shadow-inner text-right" -->
             <ul
               id="students-sub"
-              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
               role="menu"
               aria-label="Students submenu"
             >
@@ -122,7 +124,7 @@
                   href="{{ route('students.create') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >إضافة طالب</a
                 >
               </li>
@@ -132,7 +134,7 @@
                   href="{{ route('students.index') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >جدول الطلاب</a
                 >
               </li>
@@ -154,7 +156,7 @@
             </button>
             <ul
               id="teachers-sub"
-              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
               role="menu"
               aria-label="Teachers submenu"
             >
@@ -164,8 +166,10 @@
                   href="{{ route('teachers.create') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
-                  >إضافة معلم</a
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >
+                  إضافة معلم</a
+                  
                 >
               </li>
               <li role="none">
@@ -174,8 +178,9 @@
                   href="{{ route('teachers.index') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
-                  >جدول المعلمين</a
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >
+                  جدول المعلمين</a
                 >
               </li>
             </ul>
@@ -196,7 +201,7 @@
             </button>
             <ul
               id="courses-sub"
-              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
               role="menu"
               aria-label="Courses submenu"
             >
@@ -206,7 +211,7 @@
                   href="{{ route('courses.create') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >إضافة كورس</a
                 >
               </li>
@@ -216,7 +221,7 @@
                   href="{{ route('courses.index') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >جدول الكورسات</a
                 >
               </li>
@@ -238,7 +243,7 @@
             </button>
             <ul
               id="attendance-sub"
-              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md text-right"
               role="menu"
               aria-label="Attendance submenu"
             >
@@ -248,7 +253,7 @@
                   href="{{ route('attendance.create') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >تسجيل حضور</a
                 >
               </li>
@@ -258,7 +263,7 @@
                   href="{{ route('attendance.index') }}"
                   role="menuitem"
                   tabindex="-1"
-                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >جدول الحضور</a
                 >
               </li>
@@ -347,7 +352,8 @@
         // put the file name here !!!!(just for the html functionalty not for bade)
         // loadContent("studentsContent.html");
         // loadContent("studensAttendanceOne.html");
-        loadContent("studensAttendanceTwo.html");
+        // loadContent("studensAttendanceTwo.html");
+        loadContent("employeeAttendance.html");
         // loadContent("showStudent.html");
         // loadContent("dashboardContent.html");
         // loadContent("teacherAttendance.html");
@@ -355,11 +361,12 @@
     </script>
 
     <!-- <script src="{{asset('assets/js/dashboard.js')}}"></script> -->
-    <script src="assets/js/dashboard.js"></script>
     <!-- <script src="{{asset('assets/js/students.js')}}"></script> -->
+    <!-- <script src="{{asset('assets/js/attendance.js')}}"></script> -->
+    <script  src="assets/js/toast.js"></script>
+    <script  src="assets/js/dashboard.js"></script>
     <script src="/assets/js/students.js"></script>
 
-    <!-- <script src="{{asset('assets/js/attendance.js')}}"></script> -->
     <script src="/assets/js/attendance.js"></script>
   </body>
 
