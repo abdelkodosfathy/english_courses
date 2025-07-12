@@ -1,57 +1,411 @@
-<div
-  id="attendance-view"
-  class="h-full tab-content overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
->
-  <!-- العنوان + التاريخ -->
-  <div class="flex items-center justify-between gap-2">
-    <h2 class="text-2xl font-bold text-blue-900">جميع القاعات</h2>
+<div class="flex flex-col items-start py-6 space-y-4 h-full">
+  <!-- Toggle Button -->
+  <div class="w-full flex justify-end">
     <button
-      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+      id="sidebar-toggle-btn"
+      onclick="toggleSidebar()"
+      aria-label="Toggle Sidebar"
+              class="w-full flex items-center justify-center px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white transition-transform duration-300"
     >
-      اضافة قاعة
+        <img src="{{asset('assets/img/logo.webp')}}" alt="" width="100" />
+      <!-- change the fa-angle-right to fa-angle-left if it english -->
     </button>
   </div>
 
-  <!-- جدول الحضور -->
-    <div class="w-full overflow-x-auto shadow-md rounded-xl ">
-      <table class="min-w-full overflow-hidden ">
-        <thead class="bg-blue-100 text-blue-900 text-start">
-          <tr class="border-b">
-          <th class="p-3 border-l border-b">الكود</th>
-          <th class="p-3 border-l">رقم القاعة</th>
-          <th class="p-3 border-l">النوع</th>
-          <th class="p-3 border-l">السعة</th>
-          <th class="p-3 border-l">العمليات</th>
-        </tr>
-      </thead>
-      <tbody id="attendanceTableBody" class="">
-        <!-- الصفوف تضاف تلقائيًا -->
+  <!-- Dashboard -->
+  <!-- onclick="toggleSidebar();" -->
+  <div class="w-full">
+    <button
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-label="Toggle Sidebar"
+    >
+      <i class="fa-solid fa-bars text-lg w-6 text-center"></i>
+      <!-- Dashboard -->
+      <a href="{{ route('dashboard') }}" class="tab-label mr-2">لوحة التحكم</a>
+    </button>
+  </div>
 
-        <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
-        <tr class="bg-white hover:bg-gray-50 border-b">
-          <td class="p-3 border-l">R-001</td>
-          <td class="p-3 border-l">001</td>
+  <!-- Students -->
+  <div class="w-full">
+    <button
+      id="students-btn"
+      onclick="toggleSubMenu('students-sub');"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="students-sub"
+    >
+      <i class="fa fa-user-graduate text-lg w-6 text-center"></i>
+      <!-- Students -->
+      <span class="tab-label mr-2">الطلاب</span>
+    </button>
+    <!-- class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 bg-white/20 rounded-md shadow-inner text-right" -->
+    <ul
+      id="students-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="Students submenu"
+    >
+      <li role="none">
+        <!-- Add Student -->
+        <a
+          href="{{ route('students.create') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >إضافة طالب</a
+        >
+      </li>
+      <li role="none">
+        <!-- Student Table -->
+        <a
+          href="{{ route('students.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >جدول الطلاب</a
+        >
+      </li>
+    </ul>
+  </div>
 
-          <td class="p-3 border-l">
+  <!-- Teachers -->
+  <div class="w-full">
+    <button
+      id="teachers-btn"
+      onclick="toggleSubMenu('teachers-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="teachers-sub"
+    >
+      <i class="fa fa-chalkboard-teacher text-lg w-6 text-center"></i>
+      <!-- Teachers -->
+      <span class="tab-label mr-2">المعلمين</span>
+    </button>
+    <ul
+      id="teachers-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="Teachers submenu"
+    >
+      <li role="none">
+        <!-- Add Teacher -->
+        <a
+          href="{{ route('teachers.create') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >إضافة معلم</a
+        >
+      </li>
+      <li role="none">
+        <!-- Teacher Table -->
+        <a
+          href="{{ route('teachers.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >جدول المعلمين</a
+        >
+      </li>
+    </ul>
+  </div>
 
-            <!-- <span>ذكور</span> -->
-            <!-- <i class="fa-solid fa-mars text-blue-600"></i> -->
-             
-            <span>إناث</span>
-            <i class="fa-solid fa-venus text-pink-500"></i>
+  <!-- Courses -->
+  <div class="w-full">
+    <button
+      id="courses-btn"
+      onclick="toggleSubMenu('courses-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="courses-sub"
+    >
+      <i class="fa fa-book text-lg w-6 text-center"></i>
+      <!-- Courses -->
+      <span class="tab-label mr-2">الكورسات</span>
+    </button>
+    <ul
+      id="courses-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="Courses submenu"
+    >
+      <li role="none">
+        <!-- Add Course -->
+        <a
+          href="{{ route('courses.create') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >إضافة كورس</a
+        >
+      </li>
+      <li role="none">
+        <!-- Course Table -->
+        <a
+          href="{{ route('courses.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >جدول الكورسات</a
+        >
+      </li>
+    </ul>
+  </div>
 
-          </td>
-          <td class="p-3 border-l">20</td>
-           <td class="p-3 space-x-2 rtl:space-x-reverse">
-            <a href="/students/ST001" class="text-blue-600 hover:text-blue-800">
-                <i class="fa-solid fa-eye"></i>
-            </a>
-            <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(this)">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Attendance -->
+  <div class="w-full">
+    <button
+      id="attendance-btn"
+      onclick="toggleSubMenu('attendance-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="attendance-sub"
+    >
+      <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+      <!-- Attendance -->
+      <span class="tab-label mr-2">الحضور</span>
+    </button>
+    <ul
+      id="attendance-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="Attendance submenu"
+    >
+      <li role="none">
+        <!-- Mark Attendance -->
+        <a
+          href="#"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >تسجيل حضور</a
+        >
+      </li>
+      <li role="none">
+        <!-- Attendance Table -->
+        <a
+          href="#"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >جدول الحضور</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <!-- employee -->
+  <div class="w-full">
+    <button
+      id="employee-btn"
+      onclick="toggleSubMenu('employee-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="employee-sub"
+    >
+      <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+      <!-- employee -->
+      <span class="tab-label mr-2">البصمة</span>
+    </button>
+    <ul
+      id="employee-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="employee submenu"
+    >
+      <li role="none">
+        <!-- Mark employee -->
+        <a
+          href="{{ route('employee_attendance.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          مجمع الحضور</a
+        >
+      </li>
+
+      <li role="none">
+        <!-- employee check_in -->
+        <a
+          href="{{ route('employee_attendance.checkInForm') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          حضور
+        </a>
+      </li>
+
+      <li role="none">
+        <!-- employee check_out -->
+        <a
+          href="{{ route('employee_attendance.checkOutForm') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          انصراف</a
+        >
+      </li>
+
+      <li role="none">
+        <!-- employee Table -->
+        <a
+          href="{{ route('employee_attendance.monthlySummary') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >التقرير
+        </a>
+      </li>
+
+      <li role="none">
+        <!-- employee month Table -->
+        <a
+          href="{{ route('employee_attendance.allEmployeesMonthlySummary') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >التقرير الشهري
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- new created sections -->
+  <div class="w-full">
+    <button
+      id="set-btn"
+      onclick="toggleSubMenu('set-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="set-sub"
+    >
+      <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+      <!-- Attendance -->
+      <span class="tab-label mr-2">مجمع</span>
+    </button>
+    <ul
+      id="set-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="set submenu"
+    >
+      <li role="none">
+        <!--  Attendance -->
+        <a
+          href="{{ route('periods.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >الفترات
+        </a>
+      </li>
+      <li role="none">
+        <!--  Table -->
+        <a
+          href="{{ route('halls.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >الفصول
+        </a>
+      </li>
+      <li role="none">
+        <!--  Table -->
+        <a
+          href="{{ route('enrollments.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >تسجيل الطلاب
+        </a>
+      </li>
+      <li role="none">
+        <!--  Table -->
+        <a
+          href="{{ route('lectures.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+          >الحضور
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Books -->
+  <div class="w-full">
+    <button
+      id="book-btn"
+      onclick="toggleSubMenu('book-sub')"
+      class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
+      aria-expanded="false"
+      aria-controls="book-sub"
+    >
+      <i class="fa fa-calendar-check text-lg w-6 text-center"></i>
+      <!-- add books -->
+      <span class="tab-label mr-2"> الكتب </span>
+    </button>
+    <ul
+      id="book-sub"
+      class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+      role="menu"
+      aria-label="book submenu"
+    >
+      <li role="none">
+        <!-- display avilable books -->
+        <a
+          href="{{ route('books.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          الكتب
+        </a>
+      </li>
+
+      <li role="none">
+        <!-- display avilable books -->
+        <a
+          href="{{ route('book_inventory.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          عرض مخزون الكتب</a
+        >
+      </li>
+
+      <li role="none">
+        <!-- display avilable books -->
+        <a
+          href="{{ route('book_transactions.index') }}"
+          role="menuitem"
+          tabindex="-1"
+          class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+        >
+          بيع كتب
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Language Switcher Button -->
+  <div class="w-full button:justify-center flex-1 flex justify-end flex-col">
+    <button
+      onclick="toggleLang()"
+      class="w-full flex items-center justify-center gap-1 px-4 py-2 bg-white/20 hover:bg-white hover:text-blue-900 rounded transition"
+    >
+      <i class="fa fa-globe text-lg w-6 text-center"></i>
+      <span class="tab-label">English</span>
+    </button>
+    <button
+      class="w-full flex items-center justify-center gap-1 px-4 py-2 bg-white/20 hover:bg-white hover:text-blue-900 rounded transition mt-1"
+    >
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="tab-label"> تسجيل الخروج </span>
+    </button>
   </div>
 </div>

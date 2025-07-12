@@ -1,79 +1,41 @@
 // student row deleting
-<<<<<<< HEAD
  function confirmDelete(button) {
   // نحصل على الرسالة من data-message أو نستخدم الرسالة الافتراضية
   const message = button.dataset.message || "هل أنت متأكد أنك تريد حذف هذا الطالب؟";
-
   if (confirm(message)) {
     const row = button.closest("tr");
     if (row) row.remove();
   }
 }
+// show student
+function renderLevelBar(container, currentLevel) {
+  container.innerHTML = "";
+  const bar = document.createElement("div");
+  bar.className = "flex flex-1 items-center justify-between w-full";
 
-=======
-  function confirmDelete(button) {
-    if (confirm("هل أنت متأكد أنك تريد حذف هذا الطالب؟")) {
-      const row = button.closest("tr");
-      row.remove();
-    }
-  }
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
+  for (let i = 1; i <= 16; i++) {
+    const segment = document.createElement("span");
+    segment.className = `flex-1 h-1 ${i <= currentLevel ? "bg-blue-600" : "bg-gray-300"} relative`;
 
-  // show student
-  function renderLevelBar(container, currentLevel) {
-    container.innerHTML = "";
-    const bar = document.createElement("div");
-    bar.className = "flex flex-1 items-center justify-between w-full";
+    const circle = document.createElement("span");
+    circle.className = "absolute -top-2 left-0 w-5 h-5 bg-white border shadow-md text-xs font-bold rounded-full flex items-center justify-center";
+    circle.textContent = i;
 
-    for (let i = 1; i <= 16; i++) {
-      const segment = document.createElement("span");
-      segment.className = `flex-1 h-1 ${i <= currentLevel ? "bg-blue-600" : "bg-gray-300"} relative`;
-
-      const circle = document.createElement("span");
-      circle.className = "absolute -top-2 left-0 w-5 h-5 bg-white border shadow-md text-xs font-bold rounded-full flex items-center justify-center";
-      circle.textContent = i;
-
-      segment.appendChild(circle);
-      bar.appendChild(segment);
-    }
-
-    container.appendChild(bar);
+    segment.appendChild(circle);
+    bar.appendChild(segment);
   }
 
-  window.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('[data-render-level]').forEach(el => {
-      const level = parseInt(el.dataset.level) || 1;
-      renderLevelBar(el, level);
-    });
+  container.appendChild(bar);
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('[data-render-level]').forEach(el => {
+    const level = parseInt(el.dataset.level) || 1;
+    renderLevelBar(el, level);
   });
+});
 
-<<<<<<< HEAD
   const form = document.getElementById("student-profile-view");
-=======
-
-
-  // edit student data button 
-  // document.getElementById('edit-toggle-btn').addEventListener('click', function (e) {
-  //   e.preventDefault();
-
-  //   const form = document.querySelector('#student-profile form');
-
-  //   // تأكد إن كل العناصر input, select, textarea إلخ مش disabled (يعني جاهزة للتعديل)
-  //   form.querySelectorAll('input, select, textarea').forEach((el) => {
-  //     el.removeAttribute('disabled');
-  //     el.classList.remove('pointer-events-none', 'bg-gray-100', 'text-gray-500');
-  //   });
-
-  //   // أظهر زر الحفظ إن كان مخفي
-  //   const submitBtn = form.querySelector('button[type="submit"]');
-  //   submitBtn.classList.remove('hidden');
-
-  //   // إخفاء زر التعديل الأساسي
-  //   this.classList.add('hidden');
-  // });
-
-   const form = document.getElementById("student-profile-view");
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
   const editBtn = document.getElementById("editBtn");
   const maleLabel = document.getElementById("radio-male");
   const femaleLabel = document.getElementById("radio-female");
@@ -84,11 +46,8 @@
   // Save original values to restore them on cancel
   let originalValues = {};
 
-<<<<<<< HEAD
   editBtn?.addEventListener("click", function (e) {
-=======
-  editBtn.addEventListener("click", function (e) {
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
+
     e.preventDefault();
 
     // Store original values
@@ -115,7 +74,6 @@
     femaleLabel.querySelector('input').classList.remove("appearance-none");
   });
 
-<<<<<<< HEAD
   cancelBtn?.addEventListener("click", function () {
     const inputs = form.querySelectorAll("input");
     inputs.forEach((input) => {
@@ -157,49 +115,6 @@
 
 
   saveBtn?.addEventListener("click", function () {
-=======
-cancelBtn.addEventListener("click", function () {
-  const inputs = form.querySelectorAll("input");
-  inputs.forEach((input) => {
-    const key = input.name || input.id || input.type;
-
-    // if (originalValues[key] !== undefined) {
-    //   input.value = originalValues[key];
-    // }
-
-    input.disabled = true;
-
-    // إخفاء الراديو اللي مش مطابق لقيمة النوع الحالي
-    if (input.name === "gender") {
-      const label = input.closest("label");
-      const inputValue = input.getAttribute("value");
-      const currentGender = input.getAttribute("data-gender");
-
-      console.log(inputValue);
-      
-      if (input.value !== currentGender) {
-        label.classList.add("hidden");
-      } else {
-        label.classList.remove("hidden");
-      }
-
-      input.classList.add("appearance-none");
-    }
-  });
-  // إخفاء input صورة الجواز لو ظهر
-  const hiddenImageInput = form.querySelector(".relative");
-  if (hiddenImageInput && !hiddenImageInput.classList.contains("hidden")) {
-    hiddenImageInput.classList.add("hidden");
-  }
-
-  // إرجاع الأزرار
-  editBtn.classList.remove("hidden");
-  actionButtons.classList.add("hidden");
-});
-
-
-  saveBtn.addEventListener("click", function () {
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
     // Normally you'd send data to the server here
 
     // Disable inputs again after saving
@@ -234,7 +149,6 @@ cancelBtn.addEventListener("click", function () {
     }
   }
 
-<<<<<<< HEAD
   function showToast(message = "Row added successfully!") {
     const toast = document.getElementById("toast");
     const progress = document.getElementById("toast-progress");
@@ -357,42 +271,4 @@ function expandStudents(icon) {
     fullList.classList.toggle('hidden');
   }
 
-  // تدوير السهم (Font Awesome)
-  // icon.classList.toggle('fa-angle-down');
-  // icon.classList.toggle('fa-angle-up');
-=======
-
-  // registerAttendance section 
-  function registerAttendance() {
-  const course = document.getElementById("courseSelect").value;
-  const level = document.getElementById("levelSelect").value;
-  const teacher = document.getElementById("teacherSelect").value;
-  const time = document.getElementById("lectureTime").value;
-  const studentId = document.getElementById("studentIdInput").value.trim();
-
-  if (!studentId || !time) {
-    alert("يرجى إدخال كود الطالب وتحديد توقيت المحاضرة.");
-    return;
-  }
-
-  const tbody = document.getElementById("attendanceTableBody");
-
-  const tr = document.createElement("tr");
-  tr.innerHTML = `
-    <td class="p-3">${course}</td>
-    <td class="p-3">${level}</td>
-    <td class="p-3">${teacher}</td>
-    <td class="p-3">${new Date(time).toLocaleString('ar-EG')}</td>
-    <td class="p-3">${studentId}</td>
-    <td class="p-3">
-      <button class="text-red-600 hover:text-red-800" onclick="this.closest('tr').remove()">
-        <i class="fa-solid fa-trash"></i>
-      </button>
-    </td>
-  `;
-  tbody.appendChild(tr);
-
-  // تصفير الإدخال بعد الإضافة
-  document.getElementById("studentIdInput").value = "";
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
 }

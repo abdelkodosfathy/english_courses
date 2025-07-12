@@ -12,7 +12,6 @@
 @keyframes slideOutRight {
   from {
     transform: translateX(0);
-<<<<<<< HEAD
     opacity: 1;
   }
   to {
@@ -20,15 +19,6 @@
     opacity: 0;
   }
 }  
-=======
-    /* opacity: 1; */
-  }
-  to {
-    transform: translateX(100%);
-    /* opacity: 0; */
-  }
-}
->>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
 
 .toast-enter {
   animation: slideInRight 0.3s ease-out forwards;
