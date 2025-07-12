@@ -1,3 +1,4 @@
+<<<<<<< HEAD
         <main class="p-6 flex-1 max-h-full">
           <!-- Student Form -->
           <div id="students-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
@@ -175,4 +176,183 @@
           </div>
 
           
+=======
+        <main class="p-6 flex-1 max-h-full">
+          <!-- Student Form -->
+          <div id="students-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Add Student</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <input type="text" id="student-name" placeholder="Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+              <select id="student-level" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+                <option value="" disabled selected>Select Level</option>
+                <option value="a1">a1</option>
+                <option value="a2">a2</option>
+                <option value="b1">b1</option>
+                <option value="b2">b2</option>
+                <option value="c1">c1</option>
+                <option value="c2">c2</option>
+              </select>
+              <input type="text" id="student-phone" placeholder="Phone" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+            </div>
+            <button onclick="addStudent()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Student</button>
+          </div>
+
+          <!-- Students Table -->
+          <div id="students-table" class="tab-content bg-white p-6 rounded-xl shadow">
+            <div class="flex justify-between">
+              <h2 class="text-2xl font-bold mb-6">Student Table</h2>
+              <div class="mb-4">
+                <input type="text" id="student-search" oninput="filterStudents()" placeholder="Search by name, phone, or level..." class="p-2 border border-gray-300 rounded w-full">
+              </div>            
+            </div>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Level</th><th class="p-3">Phone</th><th class="p-3">Actions</th></tr>
+              </thead>
+              <tbody id="students-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Teacher Form -->
+          <div id="teachers-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Add Teacher</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" id="teacher-name" placeholder="Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+              <input type="text" id="teacher-phone" placeholder="Phone" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+            </div>
+            <button onclick="addTeacher()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Teacher</button>
+          </div>
+
+          <!-- Teacher Form -->
+          <div id="teachers-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Teacher Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Phone</th><th class="p-3">Actions</th></tr>
+              </thead>
+              <tbody id="teachers-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Course Form -->
+          <div id="courses-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Add Course</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" id="course-name" placeholder="Course Name" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+              <input type="text" id="course-duration" placeholder="Duration" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+            </div>
+            <button onclick="addCourse()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Course</button>
+          </div>
+
+          <!-- Courses table -->
+          <div id="courses-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Course Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr><th class="p-3">ID</th><th class="p-3">Name</th><th class="p-3">Duration</th><th class="p-3">Actions</th></tr>
+              </thead>
+              <tbody id="courses-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Attendance Form -->
+          <div id="attendance-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Mark Attendance</h2>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Date & Time:</label>
+              <input type="datetime-local" id="attendance-date" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+            </div>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Teacher:</label>
+              <select id="attendance-teacher" class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Teacher</option>
+              </select>
+            </div>
+          
+            <div class="mb-4">
+              <label class="block font-semibold mb-1">Present Student:</label>
+              <input type="text" id="student-autocomplete" placeholder="Type student name..." class="p-3 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-amber-500" list="student-list">
+              <datalist id="student-list"></datalist>
+            </div>
+            
+          
+            <button onclick="addAttendance()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Save</button>
+          </div>
+
+          <!-- Attendance table -->
+          <div id="attendance-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Attendance Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr><th class="p-3">ID</th><th class="p-3">Student</th><th class="p-3">Date</th><th class="p-3">Status</th></tr>
+              </thead>
+              <tbody id="attendance-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- Schendule Form -->
+          <div id="schedule-form" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Add Schedule</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <select id="schedule-course" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Course</option>
+              </select>
+              <select id="schedule-teacher" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Teacher</option>
+              </select>
+              <select id="schedule-day" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500">
+                <option disabled selected>Select Day</option>
+                <option>Saturday</option>
+                <option>Sunday</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+              </select>
+              <input type="text" id="schedule-time" placeholder="Time (e.g. 4:00 PM - 6:00 PM)" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 col-span-2">
+            </div>
+            <button onclick="addSchedule()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2 rounded-lg">Add Schedule</button>
+          </div>
+          
+          <!-- schedule Table -->
+          <div id="schedule-table" class="tab-content hidden bg-white p-6 rounded-xl shadow">
+            <h2 class="text-2xl font-bold mb-6">Schedule Table</h2>
+            <table class="min-w-full text-left">
+              <thead class="bg-amber-100">
+                <tr>
+                  <th class="p-3">ID</th>
+                  <th class="p-3">Course</th>
+                  <th class="p-3">Teacher</th>
+                  <th class="p-3">Day</th>
+                  <th class="p-3">Time</th>
+                </tr>
+              </thead>
+              <tbody id="schedule-table-body"></tbody>
+            </table>
+          </div>
+          
+          <!-- Schedule View -->
+          <div id="schedule-view" class="tab-content hidden flex flex-col bg-white p-6 rounded-xl shadow h-full">
+            <h2 class="text-2xl font-bold mb-6">Schedule of the Day</h2>
+
+
+            <div class="flex gap-4 p-2 overflow-y-auto relative flex-1">
+              <!-- Vertical timeline -->
+              <div class="w-20 flex flex-col items-center  sticky top-0">
+                <!-- سيتم ملء الساعات بالجافاسكريبت -->
+                <div id="timeline-hours" class="flex flex-col items-center gap-1"></div>
+              </div>
+
+              <!-- Schedule content -->
+              <div class="flex-1 grid gap-4" id="schedule-cards">
+                <!-- سيتم ملء البطاقات بالجافاسكريبت -->
+              </div>
+            </div>
+          </div>
+
+          
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
         </main>

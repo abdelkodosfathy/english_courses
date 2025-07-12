@@ -10,12 +10,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="{{assets('assets/css/style.css')}}" /> -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- <link rel="stylesheet" href="{{assets('assets/css/toast.css')}}" /> -->
     <link rel="stylesheet" href="assets/css/toast.css" />
     <!-- <link rel="stylesheet" href="{{assets('assets/css/schedule.css')}}" /> -->
     <link rel="stylesheet" href="assets/css/schedule.css" />
+=======
+    <link rel="stylesheet" href="{{assets('assets/css/style.css')}}" />
+    <link rel="stylesheet" href="{{assets('assets/css/toast.css')}}" />
+    <link rel="stylesheet" href="{{assets('assets/css/schedule.css')}}" />
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,15 +34,24 @@
   <body class="bg-gray-100 text-gray-800" dir="rtl">
     <!-- Toast container -->
     <div
+<<<<<<< HEAD
       onmouseenter="holdToast(true)"
       onmouseleave="holdToast(false)"
       id="toast"
       class="fixed top-5 right-5 bg-white px-4 py-2 rounded shadow-md hidden z-50 overflow-hidden "
+=======
+      id="toast"
+      class="fixed top-5 right-5 bg-white px-4 py-2 rounded shadow-md hidden z-50 overflow-hidden"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
     >
       Row added successfully!
       <div
         id="toast-progress"
+<<<<<<< HEAD
         class="absolute bottom-0 left-0 h-1 bg-blue-500"
+=======
+        class="absolute bottom-0 left-0 h-1 bg-green-500"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
       ></div>
     </div>
 
@@ -55,11 +70,19 @@
       <!-- Sidebar -->
       <aside
         id="sidebar"
+<<<<<<< HEAD
         class="flex px bg-white relative transition-all duration-[500ms] w-48 overflow-hidden border-l-2 border-gray-200"
         style="grid-area: 1 / 1 / 3 / 2"
         aria-label="Main Sidebar Navigation"
       >
         <div class="flex flex-col items-start py-6 space-y-4 h-full flex-1 overflow-y-auto">
+=======
+        class="px-2 bg-white transition-all duration-[500ms] w-48 overflow-hidden border-l-2 border-gray-200"
+        style="grid-area: 1 / 1 / 3 / 2"
+        aria-label="Main Sidebar Navigation"
+      >
+        <div class="flex flex-col items-start py-6 space-y-4 h-full">
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
           <!-- Toggle Button -->
           <div class="w-full flex justify-end">
             <button
@@ -68,6 +91,7 @@
               aria-label="Toggle Sidebar"
               class="w-full flex items-center justify-center px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white transition-transform duration-300"
             >
+<<<<<<< HEAD
               <!-- <img
                 src="{{assets('assets/img/logo.webp')}}"
                 alt=""
@@ -84,10 +108,29 @@
                 id="sidebar-toggle-icon"
                 class="fa fa-angle-right text-xl transition-transform duration-300"
               ></i> -->
+=======
+              <span class="tab-label w-full text-start">
+                <img
+                  src="{{assets('assets/img/logo.webp')}}"
+                  alt=""
+                  width="100"
+                />
+              </span>
+
+              <!-- change the fa-angle-right to fa-angle-left if it english -->
+              <i
+                id="sidebar-toggle-icon"
+                class="fa fa-angle-right text-xl transition-transform duration-300"
+              ></i>
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
             </button>
           </div>
 
           <!-- Dashboard -->
+<<<<<<< HEAD
+=======
+          <!-- onclick="toggleSidebar();" -->
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
           <div class="w-full">
             <button
               class="tab-btn w-full flex items-center justify-start px-4 py-2 hover:bg-white hover:text-blue-900 rounded focus:outline-none focus:ring-white"
@@ -116,7 +159,11 @@
             <!-- class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 bg-white/20 rounded-md shadow-inner text-right" -->
             <ul
               id="students-sub"
+<<<<<<< HEAD
               class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
+=======
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
               role="menu"
               aria-label="Students submenu"
             >
@@ -126,7 +173,11 @@
                   href="{{ route('students.create') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >إضافة طالب</a
                 >
               </li>
@@ -136,7 +187,11 @@
                   href="{{ route('students.index') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >جدول الطلاب</a
                 >
               </li>
@@ -158,7 +213,11 @@
             </button>
             <ul
               id="teachers-sub"
+<<<<<<< HEAD
               class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
+=======
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
               role="menu"
               aria-label="Teachers submenu"
             >
@@ -168,10 +227,15 @@
                   href="{{ route('teachers.create') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >
                   إضافة معلم</a
                   
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >إضافة معلم</a
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                 >
               </li>
               <li role="none">
@@ -180,9 +244,14 @@
                   href="{{ route('teachers.index') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
                   >
                   جدول المعلمين</a
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+                  >جدول المعلمين</a
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                 >
               </li>
             </ul>
@@ -203,7 +272,11 @@
             </button>
             <ul
               id="courses-sub"
+<<<<<<< HEAD
               class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md  text-right"
+=======
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
               role="menu"
               aria-label="Courses submenu"
             >
@@ -213,7 +286,11 @@
                   href="{{ route('courses.create') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >إضافة كورس</a
                 >
               </li>
@@ -223,7 +300,11 @@
                   href="{{ route('courses.index') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >جدول الكورسات</a
                 >
               </li>
@@ -245,7 +326,11 @@
             </button>
             <ul
               id="attendance-sub"
+<<<<<<< HEAD
               class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out mt-1 space-y-1 rounded-md text-right"
+=======
+              class="sub-menu max-h-0 overflow-hidden transition-all duration-[500ms] ease-in-out pr-6 mt-1 space-y-1 rounded-md bg-gray-100 text-right"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
               role="menu"
               aria-label="Attendance submenu"
             >
@@ -255,7 +340,11 @@
                   href="{{ route('attendance.create') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >تسجيل حضور</a
                 >
               </li>
@@ -265,12 +354,20 @@
                   href="{{ route('attendance.index') }}"
                   role="menuitem"
                   tabindex="-1"
+<<<<<<< HEAD
                   class="bg-gray-100 hover:px-6 duration-300 text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+=======
+                  class="text-sm block w-full hover:text-blue-900 focus:outline-none rounded px-2 py-1"
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
                   >جدول الحضور</a
                 >
               </li>
             </ul>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
           <!-- Language Switcher Button -->
           <div
             class="w-full button:justify-center flex-1 flex justify-end flex-col"
@@ -290,12 +387,15 @@
             </button>
           </div>
         </div>
+<<<<<<< HEAD
         <button id="sidebar-toggle-btn" onclick="toggleSidebar()" class="sidebar-toggle-icon absolute top-1/2 -translate-y-1/2 -left-3 duration-300">
           <i
             id="sidebar-toggle-icon"
             class="fa fa-angle-right text-xl transition-transform duration-300"
           ></i>
         </button>
+=======
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
       </aside>
 
       <!-- Main Content -->
@@ -312,7 +412,11 @@
           </div>
 
           <!-- العنوان -->
+<<<<<<< HEAD
           <h1 onclick="showToast('welcome')" class="text-xl font-semibold text-blue-900 text-center">
+=======
+          <h1 class="text-xl font-semibold text-blue-900 text-center">
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
             بسم الله الرحمن الرحيم
           </h1>
 
@@ -352,16 +456,20 @@
           });
       }
 
+<<<<<<< HEAD
 
 
       
 
+=======
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
       // هات الفايل لما الصحة تحمل
       document.addEventListener("DOMContentLoaded", () => {
         console.log("loading");
 
         // put the file name here !!!!(just for the html functionalty not for bade)
         // loadContent("studentsContent.html");
+<<<<<<< HEAD
         // loadContent("studentToCourse.html");
         // loadContent("reports.html");
         // loadContent("storeDegree.html");
@@ -380,10 +488,18 @@
         // loadContent("results.html");
 
         // loadContent("BookTransaction.html");
+=======
+        // loadContent("studensAttendanceOne.html");
+        // loadContent("studensAttendanceTwo.html");
+        // loadContent("showStudent.html");
+        // loadContent("dashboardContent.html");
+        loadContent("teacherAttendance.html");
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
       });
     </script>
 
     <!-- <script src="{{asset('assets/js/dashboard.js')}}"></script> -->
+<<<<<<< HEAD
     <!-- <script src="{{asset('assets/js/students.js')}}"></script> -->
     <!-- <script src="{{asset('assets/js/attendance.js')}}"></script> -->
     <script  src="assets/js/toast.js"></script>
@@ -426,6 +542,47 @@
   const { gregorian, hijri } = getGregorianAndHijriDate();
   document.getElementById("gregorian").textContent = ` ${gregorian}`;
   document.getElementById("hijri").textContent = ` ${hijri}`;
+=======
+    <script src="assets/js/dashboard.js"></script>
+    <!-- <script src="{{asset('assets/js/students.js')}}"></script> -->
+    <script src="/assets/js/students.js"></script>
+
+    <!-- <script src="{{asset('assets/js/attendance.js')}}"></script> -->
+    <script src="/assets/js/attendance.js"></script>
+  </body>
+
+  <script>
+    function getGregorianAndHijriDate() {
+      const today = new Date();
+
+      // التاريخ الميلادي بصيغة رقمية
+      const gregorian = today
+        .toLocaleDateString("en-EG", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1"); // يحول من DD/MM/YYYY إلى YYYY/MM/DD
+
+      // التاريخ الهجري بصيغة رقمية
+      const hijri = today
+        .toLocaleDateString("ar-SA-u-ca-islamic", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        })
+        .replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3/$2/$1"); // نفس التحويل
+
+      return {
+        gregorian,
+        hijri,
+      };
+    }
+
+    const { gregorian, hijri } = getGregorianAndHijriDate();
+    document.getElementById("gregorian").textContent = ` ${gregorian}`;
+    document.getElementById("hijri").textContent = ` ${hijri}`;
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
 </script>
 
 

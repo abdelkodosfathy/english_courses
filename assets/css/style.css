@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   /* Primary Colors (logo-based) */
   --color-primary: #FF006E;   /* Pink */
@@ -82,3 +83,57 @@ tr:last-of-type {
       border-radius: 0 !important;
     }
   }
+=======
+:root {
+  /* Primary Colors (logo-based) */
+  --color-primary: #FF006E;   /* Pink */
+  --color-secondary: #FFBE0B; /* Yellow */
+  --color-accent: #3A86FF;    /* Optional for highlights - blue tone */
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+  --color-text: #212529;
+
+  /* Gradient */
+  --gradient-primary: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+
+  /* Hover colors */
+  --hover-bg: var(--color-white);
+  --hover-text: var(--color-primary);
+
+  /* Border radius */
+  --radius: 0.5rem;
+
+  /* Transition */
+  --transition: all 0.3s ease;
+}
+
+
+/* For Arabic */
+html[lang="ar"] body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Cairo", sans-serif; /* Example Arabic font */
+}
+
+/* For English */
+html[lang="en"] body {
+  direction: ltr;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+}
+
+html[lang="en"] #sidebar-toggle-button{
+  transform: rotateY(180deg);
+}
+.active{
+}
+
+.main-content{
+  height: calc(100svh - 77px);
+}
+#sidebar {
+}
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7

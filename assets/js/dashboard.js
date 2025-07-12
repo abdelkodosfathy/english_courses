@@ -33,7 +33,11 @@ function toggleSidebar() {
   const subMenus = document.querySelectorAll(".sub-menu");
 
   const toggleIcon = document.getElementById("sidebar-toggle-icon");
+<<<<<<< HEAD
   const parentButton = toggleIcon?.parentElement;  // gets the <button> element that wraps the icon
+=======
+  const parentButton = toggleIcon.parentElement.parentElement;  // gets the <button> element that wraps the icon
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
   
 
   if (sidebarCollapsed) {
@@ -74,7 +78,10 @@ function toggleSidebar() {
   }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
 function toggleSubMenu(id) {
   const menu = document.getElementById(id);
   const isCollapsed = menu.classList.contains('max-h-0');
@@ -102,9 +109,15 @@ function toggleSubMenu(id) {
   tabBtns.forEach(btn => {
     const btnPrefix = btn.id?.split("-")[0];
     if (btnPrefix === targetPrefix) {
+<<<<<<< HEAD
       btn.classList.add("bg-blue-900", "text-white", "hover:bg-blue-900", "hover:text-white");
     } else {
       btn.classList.remove("bg-blue-900","text-white", "hover:bg-blue-900", "hover:text-white");
+=======
+      btn.classList.add("bg-blue-900", "text-white");
+    } else {
+      btn.classList.remove("bg-blue-900","text-white");
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
     }
   });
 }
@@ -315,26 +328,85 @@ function toggleLang() {
   console.log("becomes: ", lang);
 }
 
+<<<<<<< HEAD
 function scrollToHour(hour) {
   console.log(hour);
   const container = document.getElementById('schedule-cards-container');
 
+=======
+// window.onload = () => {
+//   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
+//   populateStudentAutocomplete();
+//   populateTeacherSelect();
+// };
+
+const scheduleToday = [
+  {
+    time: "9:00 AM",
+    duration: "1h",
+    teacher: "أ. أحمد محمد",
+    room: 5,
+    language: "عربية",
+    level: "المستوى الأول"
+  },
+  {
+    time: "10:30 AM",
+    duration: "1h",
+    teacher: "أ. سلمى علي",
+    room: 3,
+    language: "عربية",
+    level: "المستوى الثاني"
+  },
+  {
+    time: "12:00 PM",
+    duration: "45 دقيقة",
+    teacher: "أ. مازن يوسف",
+    room: 2,
+    language: "إنجليزية",
+    level: "المستوى الثالث"
+  },
+  {
+    time: "1:15 PM",
+    duration: "1h",
+    teacher: "أ. نسرين عبد الله",
+    room: 4,
+    language: "فرنسية",
+    level: "المستوى الأول"
+  },
+  {
+    time: "3:00 PM",
+    duration: "1h",
+    teacher: "أ. خالد حسن",
+    room: 1,
+    language: "عربية",
+    level: "المستوى الرابع"
+  }
+];
+
+function scrollToHour(hour) {
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
   // إزالة highlight من كل العناصر المحددة مسبقًا
   const markedElements = document.getElementsByClassName('highlight');
   Array.from(markedElements).forEach(el => {
     el.classList.remove("highlight");
   });
 
+<<<<<<< HEAD
   // تنظيف الـ hour من الفراغات
   const cleanHour = hour.replace(/\s/g, '');
   console.log(cleanHour);
 
   // تحديد العناصر الجديدة لإضافة highlight
+=======
+  // إضافة highlight للعناصر الجديدة
+  const cleanHour = hour.replace(/\s/g, '');
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
   const targetElements = document.querySelectorAll(`#hour-${cleanHour}`);
   targetElements.forEach(el => {
     el.classList.add("highlight");
   });
 
+<<<<<<< HEAD
   // تمرير العنصر داخل الكونتينر فقط
   const el = document.getElementById(`hour-${cleanHour}`);
   if (el && container) {
@@ -398,3 +470,13 @@ function printSection() {
     printWindow.close();
   }, 500);
 }
+=======
+  // تمرير للعنصر الأول المطابق
+  const el = document.getElementById(`hour-${cleanHour}`);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
+    const row = document.querySelector('#student-profile');
+    console.log(row);
+>>>>>>> 018acf1f43702308db8099f1fec879863a2dabe7
