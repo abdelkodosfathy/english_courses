@@ -33,7 +33,7 @@ function toggleSidebar() {
   const subMenus = document.querySelectorAll(".sub-menu");
 
   const toggleIcon = document.getElementById("sidebar-toggle-icon");
-  const parentButton = toggleIcon.parentElement.parentElement;  // gets the <button> element that wraps the icon
+  const parentButton = toggleIcon?.parentElement;  // gets the <button> element that wraps the icon
   
 
   if (sidebarCollapsed) {
@@ -73,6 +73,7 @@ function toggleSidebar() {
     sidebarCollapsed = true;
   }
 }
+
 
 function toggleSubMenu(id) {
   const menu = document.getElementById(id);
@@ -314,55 +315,6 @@ function toggleLang() {
   console.log("becomes: ", lang);
 }
 
-// window.onload = () => {
-//   document.getElementById("attendance-date").value = new Date().toISOString().slice(0, 16);
-//   populateStudentAutocomplete();
-//   populateTeacherSelect();
-// };
-
-const scheduleToday = [
-  {
-    time: "9:00 AM",
-    duration: "1h",
-    teacher: "أ. أحمد محمد",
-    room: 5,
-    language: "عربية",
-    level: "المستوى الأول"
-  },
-  {
-    time: "10:30 AM",
-    duration: "1h",
-    teacher: "أ. سلمى علي",
-    room: 3,
-    language: "عربية",
-    level: "المستوى الثاني"
-  },
-  {
-    time: "12:00 PM",
-    duration: "45 دقيقة",
-    teacher: "أ. مازن يوسف",
-    room: 2,
-    language: "إنجليزية",
-    level: "المستوى الثالث"
-  },
-  {
-    time: "1:15 PM",
-    duration: "1h",
-    teacher: "أ. نسرين عبد الله",
-    room: 4,
-    language: "فرنسية",
-    level: "المستوى الأول"
-  },
-  {
-    time: "3:00 PM",
-    duration: "1h",
-    teacher: "أ. خالد حسن",
-    room: 1,
-    language: "عربية",
-    level: "المستوى الرابع"
-  }
-];
-
 function scrollToHour(hour) {
   // إزالة highlight من كل العناصر المحددة مسبقًا
   const markedElements = document.getElementsByClassName('highlight');
@@ -383,5 +335,51 @@ function scrollToHour(hour) {
 }
 
 
-    const row = document.querySelector('#student-profile');
-    console.log(row);
+const row = document.querySelector('#student-profile');
+console.log(row);
+
+
+function printSection() {
+  
+  const content = document.getElementById("print-area").innerHTML;
+  console.log(content);
+
+  const printWindow = window.open('', '', 'width=800,height=600');
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>طباعة</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            padding: 20px;
+            direction: rtl;
+            font-family: 'Lateef', 'Montserrat', sans-serif;
+          }
+          table { width: 100%; border-collapse: collapse; }
+          tr:last-of-type {
+            border-bottom: 0;
+            // padding: 8px;
+          }
+        </style>
+      </head>
+      <body>${content}</body>
+    </html>
+  `);
+
+  printWindow.document.close();
+  printWindow.focus();
+
+  // Delay a bit to ensure styles load
+  setTimeout(() => {
+    printWindow.print();
+    printWindow.close();
+  }, 500);
+}
