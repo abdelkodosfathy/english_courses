@@ -1,0 +1,90 @@
+<div
+id="attendance-view"
+class="h-full tab-content overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
+>
+<!-- العنوان + التاريخ -->
+<div class="flex items-center justify-between gap-2">
+  <h2 class="text-2xl font-bold text-blue-900">حضور الموظفين ( ابريل - 2025 )</h2>
+
+</div>
+
+<div class="flex flex-wrap items-center gap-2 mb-4">
+  <input
+    id="studentIdInput"
+    type="text"
+    placeholder="أدخل السنة"
+    class=" px-4 py-2 border rounded-md w-fit"
+  />
+  <select name="month" class="w-32 px-4 py-2 border rounded-md" id="month-selector">
+    <option value="jun">jun</option>
+    <option value="fap">fap</option>
+    <option value="mar">mar</option>
+  </select>
+
+  <!-- زر تسجيل -->
+  <button
+  onclick="registerAttendanceTwo()"
+      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+    >
+      عرض
+    </button>
+</div>
+
+<!-- جدول الحضور -->
+<div class="overflow-x-auto mt-6 rounded-xl shadow-sm">
+  <table class="min-w-full text-right">
+    <thead class="bg-gray-100">
+      <tr class="border-b">
+        <th class="p-3 border-l border-b">الاسم</th>
+        <th class="p-3 border-l">مجموع ايام العمل</th>
+        <th class="p-3 border-l">حضر</th>
+        <th class="p-3 border-l">ساعات العمل</th>
+        <th class="p-3 border-l">الوقت الاضافي</th>
+        <th class="p-3 border-">مجموع الساعات في الهشر</th>
+      </tr>
+    </thead>
+    <tbody id="attendanceTableBody" class="">
+      <!-- الصفوف تضاف تلقائيًا -->
+
+
+        <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
+        <tr class="bg-white hover:bg-gray-50 border-b">
+          <td class="p-3 border-l">احمد علي</td>
+          <td class="p-3 border-l">26</td>
+          <td class="p-3 border-l">23</td>
+          <td class="p-3 border-l">184 ساعة</td>
+          <td class="p-3 border-l">16 ساعة</td>
+          <td class="p-3">200 ساعة</td>
+        </tr>
+
+        
+        <tr class="bg-white hover:bg-gray-50 border-b">
+          <td class="p-3 border-l">احمد علي</td>
+          <td class="p-3 border-l">26</td>
+          <td class="p-3 border-l">23</td>
+          <td class="p-3 border-l">184 ساعة</td>
+          <td class="p-3 border-l">16 ساعة</td>
+          <td class="p-3">200 ساعة</td>
+        </tr>
+        <tr class="bg-white hover:bg-gray-50 border-b">
+          <td class="p-3 border-l">احمد علي</td>
+          <td class="p-3 border-l">26</td>
+          <td class="p-3 border-l">23</td>
+          <td class="p-3 border-l">184 ساعة</td>
+          <td class="p-3 border-l">16 ساعة</td>
+          <td class="p-3">200 ساعة</td>
+        </tr>
+        <tr class="bg-white hover:bg-gray-50 border-b">
+          <td class="p-3 border-l">احمد علي</td>
+          <td class="p-3 border-l">26</td>
+          <td class="p-3 border-l">23</td>
+          <td class="p-3 border-l">184 ساعة</td>
+          <td class="p-3 border-l">16 ساعة</td>
+          <td class="p-3">200 ساعة</td>
+        </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</div>

@@ -1,70 +1,71 @@
-<div
-  id="course-summary-report"
-  class="h-full overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
->
-  <!-- عنوان التقرير -->
-   <div class="print-area">
-    <div class="flex justify-between items-center border-b pb-4">
-      <h2 class="text-xl font-bold text-gray-800">تقرير نهاية الدورة</h2>
-      <span class="text-sm text-gray-500">تاريخ التقرير: 2025-07-12</span>
-    </div>
-
-    <!-- جدول الإحصائيات -->
-    <div class="overflow-x-auto rounded-xl shadow-sm">
-      <table class="min-w-full text-right border border-gray-200">
-        <thead class="bg-gray-100 text-gray-700 text-sm">
-          <tr>
-            <th class="p-3 border-b">البند</th>
-            <th class="p-3 border-b">القيمة</th>
-          </tr>
-        </thead>
-        <tbody class="text-sm text-gray-800 bg-white">
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">نسبة الحضور</td>
-            <td class="p-3 border-b">89%</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">عدد الطلاب الكلي</td>
-            <td class="p-3 border-b">42</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">عدد الطلاب الجدد</td>
-            <td class="p-3 border-b">11</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">عدد الكتب المباعة</td>
-            <td class="p-3 border-b">37</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">إجمالي المبيعات</td>
-            <td class="p-3 border-b">8,500 جنيه</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">تاريخ بداية الدورة</td>
-            <td class="p-3 border-b">2025-06-01</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">تاريخ نهاية الدورة</td>
-            <td class="p-3 border-b">2025-07-10</td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3 border-b font-medium">التقييم العام من الطلاب</td>
-            <td class="p-3 border-b">4.7 / 5</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- زر الطباعة أو التصدير -->
-    <div class="flex justify-end mt-4">
-      <button
-      onclick="printSection()"
-        class="px-6 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
-      >
-        طباعة التقرير
-      </button>
-    </div>
-    
-  </div>
-  
-</div>
+        <div
+          id="course-summary-report"
+          class="h-full overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
+        >
+          <!-- عنوان التقرير -->
+          <div id="print-area">
+            <div class="flex justify-between items-center pb-4">
+              <h2 class="text-xl font-bold text-gray-800">تقرير نهاية الدورة</h2>
+              <span class="text-sm text-gray-500">تاريخ التقرير: 2025-07-12</span>
+            </div>
+        
+            <!-- جدول الإحصائيات -->
+            <div class="overflow-x-auto rounded-xl border border-gray-200">
+              <table class="min-w-full text-right ">
+                <thead class="bg-gray-100 text-gray-700 text-sm">
+                  <tr class=" border-b">
+                    <th class="p-3">البند</th>
+                    <th class="p-3">القيمة</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm text-gray-800 bg-white">
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">نسبة الحضور</td>
+                    <td class="p-3">89%</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">عدد الطلاب الكلي</td>
+                    <td class="p-3">42</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">عدد الطلاب الجدد</td>
+                    <td class="p-3">11</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">عدد الكتب المباعة</td>
+                    <td class="p-3">37</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">إجمالي المبيعات</td>
+                    <td class="p-3">8,500 جنيه</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">تاريخ بداية الدورة</td>
+                    <td class="p-3">2025-06-01</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50  border-b">
+                    <td class="p-3 font-medium">تاريخ نهاية الدورة</td>
+                    <td class="p-3">2025-07-10</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50">
+                    <td class="p-3 font-medium">التقييم العام من الطلاب</td>
+                    <td class="p-3">4.7 / 5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        
+            <!-- زر الطباعة أو التصدير -->
+            <div class="flex justify-end mt-4">
+              <button
+              onclick="printSection()"
+                class="px-6 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition"
+              >
+                طباعة التقرير
+              </button>
+            </div>
+            
+          </div>
+          
+        </div>
+      

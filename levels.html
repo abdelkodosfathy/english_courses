@@ -1,0 +1,54 @@
+<div
+  id="student-profile-view"
+  class="h-full tab-content overflow-y-auto flex flex-col items-center bg-white p-6 rounded-xl shadow space-y-6"
+>
+  <!-- الهيدر -->
+  <div class="flex justify-between w-full">
+    <h2 class="text-2xl font-bold text-blue-900">المستويات</h2>
+    <a class="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">تسجيل طالب جديد</a>
+  </div>
+
+  <!-- دا كدا جدول علي بعضه كرر منه -->
+  <div class="space-y-6 w-full">
+    <!-- هيدلاين يوضح اسم المستوى والمعلم -->
+    <div class="w-full text-start bg-blue-50 px-4 py-3 rounded border border-blue-200">
+      <p class="text-blue-900 font-semibold">المستوى الأول - المعلم: أحمد السيد</p>
+    </div>
+
+    <!-- الجدول -->
+    <div class="w-full overflow-x-auto shadow-md rounded-xl ">
+      <table class="min-w-full overflow-hidden ">
+        <thead class="bg-blue-100 text-blue-900 text-start">
+          <tr class="border-b">
+            <th class="p-3 border-l border-blue-200">الوقت</th>
+            <th class="p-3 border-l border-blue-200">السعة/المُستخدَم</th>
+            <th class="p-3 ">الطلاب</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-800 text-start">
+          <tr class="border-b hover:bg-gray-50">
+            <td class="p-3 border-l">12:00 ظهرًا</td>
+            <td class="p-3 border-l">5/5</td>
+            <td data-expandable class="p-3 cursor-pointer">
+              <div onclick="expandStudents(this)" id="studens-expanded-summary" class=" flex items-center justify-between">
+                <p>أحمد، سارة، خالد، ريم...</p>
+                <i  class="fa fa-angle-down"></i>
+              </div>
+              <div id="studens-expanded-list" class="hidden flex w-full justify-between">
+                <ul class="mt-2 space-y-1 w-full">
+                  <li class="border-b">أحمد</li>
+                  <li class="border-b">ريم</li>
+                  <li class="border-b">منال</li>
+                  <li class="border-b">خالد</li>
+                  <li>سارة</li>
+                </ul>
+                <i onclick="expandStudents(this)" class="fa fa-angle-up"></i>
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

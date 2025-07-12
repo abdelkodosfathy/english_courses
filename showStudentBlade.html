@@ -1,0 +1,286 @@
+<form
+  action="{{ route('students.update', $student) }}"
+  method="POST"
+  enctype="multipart/form-data"
+  id="student-profile-view"
+  class="h-full tab-content overflow-y-auto flex flex-col items-center bg-white p-6 rounded-xl shadow space-y-6"
+>
+  <h2 class="text-2xl font-bold text-blue-900">بيانات الطالب</h2>
+
+  <!-- الصورة والاسم -->
+  <div class="w-full max-w-4xl border-t pt-6">
+    <div class="flex flex-col items-center gap-4">
+      <div class="w-32 h-32">
+        <img
+          src="./assets/img/download.png"
+          src="{{ $student->img_path ? route('student.image', ['type' => 'img', 'filename' => basename($student->img_path)]) : asset('images/default-profile.png') }}"
+          alt="صورة الطالب"
+          class="w-full h-full object-cover rounded-full shadow-md"
+        />
+      </div>
+      <div class="flex items-center gap-3 text-xl font-semibold text-gray-800">
+        <input
+          disabled
+          type="text"
+          name="ar_name"
+          class="caret-black bg-transparent text-end"
+          value="محمد علي"
+          value="{{ old('ar_name', $student->ar_name) }}"
+          required
+        />
+        <span class="text-gray-400">|</span>
+        <input
+          disabled
+          type="text"
+          name="en_name"
+          class="caret-black bg-transparent text-start"
+          value="Mohamed Ali"
+          value="{{ old('en_name', $student->en_name) }}"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- الاتصال والجوازات -->
+  <div class="w-full max-w-4xl border-t pt-6 space-y-6">
+    <div>
+      <label class="block text-gray-500 mb-1">رقم الهاتف</label>
+      <input
+        disabled
+        type="text"
+        name="phone"
+        value="01123800476"
+        value="{{ old('phone', $student->phone) }}"
+        class="bg-white text-start p-2 rounded w-full"
+        required
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-gray-500 mb-1">الجنسية</label>
+        <input
+          disabled
+          type="text"
+          name="nationality"
+          value="جزائري"
+          value="{{ old('nationality', $student->nationality) }}"
+          class="p-2 rounded border w-full bg-gray-100"
+        />
+      </div>
+      <div>
+        <label class="block text-gray-500 mb-1">جنسيات أخرى</label>
+        <input
+          disabled
+          type="text"
+          name="other_nationality"
+          value="فرنسي | بريطاني"
+          value="{{ old('other_nationality', $student->other_nationality) }}"
+          class="bg-white p-2 rounded border w-full"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+      <div>
+        <label class="block text-gray-500 mb-1">رقم الجواز</label>
+        <input
+          disabled
+          type="text"
+          name="passport_number"
+          value="A12345678"
+          value="{{ old('passport_number', $student->passport_number) ?? ' ' }}"
+          class="bg-white p-2 rounded border w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-gray-500 mb-1">صورة جواز السفر</label>
+
+        <div class="relative w-full">
+          <div
+          data-view-hide
+            class="hidden border-2 border-dashed border-gray-300 rounded-lg bg-white p-4 text-center text-sm text-gray-500 hover:border-blue-400 transition cursor-pointer"
+          >
+            <input
+              disabled
+              type="file"
+              name="passport_path"
+              accept=".pdf,.jpg,.jpeg,.png"
+              class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <div
+              class="flex flex-col items-center justify-center pointer-events-none"
+            >
+              <svg
+                class="w-8 h-8 mb-2 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 15a4 4 0 004 4h10a4 4 0 004-4m-7-4v8m0 0L8 12m4 7l4-4M4 4h16v4H4z"
+                />
+              </svg>
+              <p>اسحب الملف هنا أو اضغط لاختياره</p>
+              <p class="text-xs text-gray-400 mt-1">PDF, JPG, PNG</p>
+            </div>
+          </div>
+          <img
+            data-edit-hide
+            src="/assets/img/passport.jpg"
+            alt="جواز السفر"
+            class="w-24 h-16 object-cover rounded-md border cursor-pointer hover:scale-105 transition"
+            onclick="window.open(this.src, '_blank')"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- البيانات الأكاديمية -->
+  <div class="w-full max-w-4xl border-t pt-6 grid grid-cols-1 gap-6">
+    <div>
+      <div class="flex gap-2 w-full items-center">
+        <label class="block text-gray-500 mb-1">المستوى الحالي: </label>
+        <input
+          disabled
+          type="number"
+          name="current_level"
+          min="1"
+          max="16"
+          value="4"
+          value="{{ old('current_level', $student->current_level) }}"
+          class="bg-white p-2 rounded w-fit"
+        />
+      </div>
+
+      <!--put the student level in the data-level -->
+      <div
+        id="level-bar"
+        data-edit-hide
+        class="relative w-full flex items-center justify-between"
+        data-level="4"
+        data-level="{{ old('current_level', $student->current_level) }}"
+        data-render-level
+      ></div>
+    </div>
+    <div class="flex justify-between">
+      <div>
+        <label class="block text-gray-500 mb-1">الفترة الحالية</label>
+        <input
+          disabled
+          type="number"
+          name="curent_period"
+          value="1"
+          value="{{ old('curent_period', $student->curent_period) }}"
+          class="bg-white p-2 rounded w-full"
+        />
+      </div>
+      <div>
+        <label class="block text-gray-500 mb-1">تكلفة المستوى</label>
+        <div
+          class="flex items-center bg-green-50 rounded shadow-sm w-fit px-4 py-2 text-lg font-bold text-gray-800"
+        >
+          <input
+            disabled
+            type="number"
+            name="level_cost"
+            value="5000"
+            value="{{ old('level_cost', $student->level_cost) }}"
+            class="bg-transparent caret-black w-20 text-end outline-none"
+          />
+          <span>جنيه</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- المعلومات الشخصية -->
+  <div
+    class="w-full max-w-4xl border-t pt-6 grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"
+  >
+    <div>
+      <label class="block text-gray-500 mb-1">النوع</label>
+      <div
+        data-view-hide
+        class="flex items-center gap-4 text-gray-800 font-medium hidden"
+      >
+        <label class="flex items-center gap-2 cursor-pointer">
+          <!-- <input type="radio" name="gender" value="male" {{ old('gender', $student->gender) == 'male' ? 'checked' : '' }}> -->
+          <input disabled type="radio" name="gender" value="male" checked />
+          <i class="fa-solid fa-mars text-blue-600"></i>
+          <span>ذكر</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer">
+          <!-- <input type="radio" name="gender" value="female" {{ old('gender', $student->gender) == 'female' ? 'checked' : '' }}> -->
+          <input disabled type="radio" name="gender" value="female" />
+          <i class="fa-solid fa-venus text-pink-500"></i>
+          <span>أنثى</span>
+        </label>
+      </div>
+      <div
+        data-edit-hide
+        class="flex items-center gap-4 text-gray-800 font-medium"
+      >
+        <!-- display one based on blade data  -->
+
+        <label class="flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-mars text-blue-600"></i>
+          <span>ذكر</span>
+        </label>
+
+        <!-- <label class="flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-venus text-pink-500"></i>
+          <span>أنثى</span>
+        </label> -->
+
+
+      </div>
+    </div>
+    <div>
+      <label class="block text-gray-500 mb-1">تاريخ الميلاد</label>
+      <input
+        disabled
+        type="date"
+        name="birthdate"
+        value="2015-01-01"
+        value="{{ old('birthdate', $student->birthdate) }}"
+        class="bg-white p-2 rounded w-full text-end"
+      />
+    </div>
+  </div>
+
+  <!-- زر الحفظ -->
+  <div
+    id="form-actions"
+    class="border-t pt-4 w-full max-w-4xl text-center flex gap-2 justify-center hidden"
+  >
+    <button
+      type="submit"
+      class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+    >
+      حفظ
+    </button>
+    <button
+      class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+      type="button"
+      onclick="editForm(true)"
+    >
+      الغاء
+    </button>
+  </div>
+
+  <div id="form-edit-button" class="border-t w-full text-center">
+    <button
+      class="mt-4 px-6 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-900"
+      type="button"
+      onclick="editForm(false)"
+    >
+      تعديل
+    </button>
+  </div>
+</form>

@@ -1,0 +1,57 @@
+<div
+  id="attendance-view"
+  class="h-full tab-content overflow-y-auto flex flex-col bg-white p-6 rounded-xl shadow space-y-6"
+>
+  <!-- العنوان + التاريخ -->
+  <div class="flex items-center justify-between gap-2">
+    <h2 class="text-2xl font-bold text-blue-900">عمليات الكتب</h2>
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+    >
+      اضافة عملية
+    </button>
+  </div>
+
+  <!-- جدول الحضور -->
+    <div class="w-full overflow-x-auto shadow-md rounded-xl ">
+      <table class="min-w-full overflow-hidden ">
+        <thead class="bg-blue-100 text-blue-900 text-start">
+          <tr class="border-b">
+          <th class="p-3 border-l border-b">الكود</th>
+          <th class="p-3 border-l">رقم القاعة</th>
+          <th class="p-3 border-l">النوع</th>
+          <th class="p-3 border-l">السعة</th>
+          <th class="p-3 border-l">العمليات</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceTableBody" class="">
+        <!-- الصفوف تضاف تلقائيًا -->
+
+        <!-- <tr class="bg-red-50 hover:bg-red-100"> -->
+        <tr class="bg-white hover:bg-gray-50 border-b">
+          <td class="p-3 border-l">R-001</td>
+          <td class="p-3 border-l">001</td>
+
+          <td class="p-3 border-l">
+
+            <!-- <span>ذكور</span> -->
+            <!-- <i class="fa-solid fa-mars text-blue-600"></i> -->
+             
+            <span>إناث</span>
+            <i class="fa-solid fa-venus text-pink-500"></i>
+
+          </td>
+          <td class="p-3 border-l">20</td>
+           <td class="p-3 space-x-2 rtl:space-x-reverse">
+            <a href="/students/ST001" class="text-blue-600 hover:text-blue-800">
+                <i class="fa-solid fa-eye"></i>
+            </a>
+            <button class="text-red-600 hover:text-red-800" onclick="confirmDelete(this)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

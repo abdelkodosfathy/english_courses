@@ -316,23 +316,39 @@ function toggleLang() {
 }
 
 function scrollToHour(hour) {
+  console.log(hour);
+  const container = document.getElementById('schedule-cards-container');
+
   // إزالة highlight من كل العناصر المحددة مسبقًا
   const markedElements = document.getElementsByClassName('highlight');
   Array.from(markedElements).forEach(el => {
     el.classList.remove("highlight");
   });
 
-  // إضافة highlight للعناصر الجديدة
+  // تنظيف الـ hour من الفراغات
   const cleanHour = hour.replace(/\s/g, '');
+  console.log(cleanHour);
+
+  // تحديد العناصر الجديدة لإضافة highlight
   const targetElements = document.querySelectorAll(`#hour-${cleanHour}`);
   targetElements.forEach(el => {
     el.classList.add("highlight");
   });
 
-  // تمرير للعنصر الأول المطابق
+  // تمرير العنصر داخل الكونتينر فقط
   const el = document.getElementById(`hour-${cleanHour}`);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (el && container) {
+    const top = el.offsetTop - container.offsetTop;
+    console.log(top);
+    console.log(container);
+    
+    container.scrollTo({
+      top: top,
+      behavior: 'smooth'
+    });
+  }
 }
+
 
 
 const row = document.querySelector('#student-profile');
@@ -366,7 +382,6 @@ function printSection() {
           table { width: 100%; border-collapse: collapse; }
           tr:last-of-type {
             border-bottom: 0;
-            // padding: 8px;
           }
         </style>
       </head>

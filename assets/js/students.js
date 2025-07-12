@@ -1,10 +1,14 @@
 // student row deleting
-  function confirmDelete(button) {
-    if (confirm("هل أنت متأكد أنك تريد حذف هذا الطالب؟")) {
-      const row = button.closest("tr");
-      row.remove();
-    }
+ function confirmDelete(button) {
+  // نحصل على الرسالة من data-message أو نستخدم الرسالة الافتراضية
+  const message = button.dataset.message || "هل أنت متأكد أنك تريد حذف هذا الطالب؟";
+
+  if (confirm(message)) {
+    const row = button.closest("tr");
+    if (row) row.remove();
   }
+}
+
 
   // show student
   function renderLevelBar(container, currentLevel) {
@@ -189,3 +193,87 @@
       return;
     }
   }
+  
+
+function enableFormAndToggleVisibility(formIdSelector) {
+  const form = document.getElementById(formIdSelector);
+  if (!form) return console.warn("Form not found");
+
+  // 1. Enable all inputs, selects, textareas, and buttons
+  const fields = form.querySelectorAll('input, select, textarea, button');
+  fields.forEach(field => {
+    field.disabled = false;
+  });
+
+  // 2. Add "hidden" class to elements with data-edit-hide
+  const editHideElements = form.querySelectorAll('[data-edit-hide]');
+  editHideElements.forEach(el => {
+    el.classList.add('hidden');
+  });
+
+  // 3. Remove "hidden" class from elements with data-view-hide
+  const viewHideElements = form.querySelectorAll('[data-view-hide]');
+  viewHideElements.forEach(el => {
+    el.classList.remove('hidden');
+  });
+}
+function disableFormAndToggleVisibility(formIdSelector) {
+  const form = document.getElementById(formIdSelector);
+  if (!form) return console.warn("Form not found");
+
+  // 1. Disable all inputs, selects, textareas, and buttons
+  const fields = form.querySelectorAll('input, select, textarea');
+  fields.forEach(field => {
+    field.disabled = true;
+  });
+
+  // 2. Remove "hidden" class from elements with data-edit-hide
+  const editHideElements = form.querySelectorAll('[data-edit-hide]');
+  editHideElements.forEach(el => {
+    el.classList.remove('hidden');
+  });
+
+  // 3. Add "hidden" class to elements with data-view-hide
+  const viewHideElements = form.querySelectorAll('[data-view-hide]');
+  viewHideElements.forEach(el => {
+    el.classList.add('hidden');
+  });
+}
+
+function editForm(state){
+  // hook DOMnodes
+  const formId = 'student-profile-view'
+  const formActions = document.getElementById('form-actions');
+  const formEditButton = document.getElementById('form-edit-button');
+  // change the action buttons
+  formActions.classList.toggle('hidden', state)
+  formEditButton.classList.toggle('hidden', !state)
+
+  if(state) {
+    // enable the inputs 
+    disableFormAndToggleVisibility(formId)
+  } else {
+    enableFormAndToggleVisibility(formId)
+  }
+}
+
+// levels.html
+function expandStudents(icon) {
+  // الوصول لأقرب td فيه data-expandable
+  const td = icon.closest('[data-expandable]');
+  if (!td) return;
+
+  // الحصول على p والـ ul داخل الـ td
+  const summary = td.querySelector('#studens-expanded-summary');
+  const fullList = td.querySelector('#studens-expanded-list');
+
+  // قلب العرض بين الملخص والقائمة
+  if (summary && fullList) {
+    summary.classList.toggle('hidden');
+    fullList.classList.toggle('hidden');
+  }
+
+  // تدوير السهم (Font Awesome)
+  // icon.classList.toggle('fa-angle-down');
+  // icon.classList.toggle('fa-angle-up');
+}
